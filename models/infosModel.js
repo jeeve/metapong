@@ -1,5 +1,9 @@
 class InfosModel {
-
+  constructor(nbEcrans) {
+    this.nbEcrans = nbEcrans;
+  }
 }
 
-module.exports = { InfosModel };
+let infos = new InfosModel();
+
+module.exports = { InfosModel, infos };

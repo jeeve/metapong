@@ -1,7 +1,6 @@
 const http = require('http');
 const app = require('./app');
 
-const infosRoutes = require('./routes/infosController');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -9,8 +8,6 @@ const cors = require('cors');
 
 app.use(bodyParser.json());
 app.use(cors());
-
-app.use('/clients', infosRoutes);
 
 const normalizePort = val => {
   const port = parseInt(val, 10);
@@ -23,7 +20,7 @@ const normalizePort = val => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || '5500');
+const port = normalizePort(process.env.PORT ||'5500');
 app.set('port', port);
 
 const errorHandler = error => {

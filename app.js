@@ -7,4 +7,12 @@ app.get('/', function(request, response) {
    response.sendFile('./index.html');
  });
 
+const { InfosModel, infos } = require('./models/infosModel');
+
+app.get('/init/:nbEcrans', (req, res) => {
+    infos.nbEcrans = Number(req.params.nbEcrans);
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ nbEcrans: infos.nbEcrans }));
+});
+
 module.exports = app;
