@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 creeMurHorizontal(0);
 creeMurHorizontal(95);
 creeMurVertical(0);
@@ -7,8 +6,6 @@ creeBloc(60, 50);
 
 //setInterval(avanceTemps, 10);
 
-=======
->>>>>>> 98c43778f39001b5c1fced1048be82023b06698d
 function blocEn(x, y) {
   let OK = false;
   const blocs = document.querySelectorAll("rect");

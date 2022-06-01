@@ -1,12 +1,7 @@
 const http = require('http');
 const app = require('./app');
 
-<<<<<<< HEAD
 const infosRoutes = require('./routes/infosController');
-=======
-require('./models/dbConfig');
-const infosRoutes = require('./routes/clientsController');
->>>>>>> 98c43778f39001b5c1fced1048be82023b06698d
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
