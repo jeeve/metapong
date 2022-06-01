@@ -28,4 +28,8 @@ function notifieServeur(message) {
   });
 }
 
-
+function quiSuisJe() {
+  fetch("http://localhost:5500/quisuisje/", init).then((response) => {
+    return 6; //response.json();
+  });
+}
