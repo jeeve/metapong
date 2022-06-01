@@ -29,7 +29,15 @@ function notifieServeur(message) {
 }
 
 function quiSuisJe() {
-  fetch("http://localhost:5500/quisuisje/", init).then((response) => {
-    return 6; //response.json();
-  });
+
+  const init = {
+    method: "GET",
+    mode: "cors",
+    credentials: "same-origin",
+  };
+
+
+  fetch("http://localhost:5500/quisuisje/", init).then(response => response.json())
+  .then(response => document.querySelector("#ecran").innerHTML = JSON.stringify(response));
+
 }

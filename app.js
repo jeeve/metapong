@@ -15,4 +15,9 @@ app.get('/init/:nbEcrans', (req, res) => {
     res.end(JSON.stringify({ nbEcrans: infos.nbEcrans }));
 });
 
+app.get('/quisuisje/', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify({ nbEcrans: 12 }));
+});
+
 module.exports = app;

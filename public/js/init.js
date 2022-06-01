@@ -1,6 +1,6 @@
-const ID = quiSuisJe();
+quiSuisJe();
 
-document.querySelector("#ecran").innerHTML(ID);
+
 /*
 notifieServeur("init");
 
