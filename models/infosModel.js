@@ -1,7 +1,7 @@
 class InfosModel {
   
-  constructor(nbEcrans) {
-    this.nbEcrans = nbEcrans;
+  constructor() {
+    this.nbEcrans = 0;
   }
 
   render(indiceEcran) {
@@ -11,6 +11,14 @@ class InfosModel {
        blocs.push({ x : i, y : 94 });   
     }
     return { blocs : blocs };
+  }
+
+  ajouteEcran() {
+    this.nbEcrans++;
+  }
+
+  getNbEcrans() {
+    return this.nbEcrans;
   }
 
 }

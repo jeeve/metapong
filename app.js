@@ -16,8 +16,9 @@ app.get('/init/:nbEcrans', (req, res) => {
 });
 
 app.get('/quisuisje/', (req, res) => {
+  infos.ajouteEcran();
   res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify({ nbEcrans: 12 }));
+  res.end(JSON.stringify({ nbEcrans: infos.getNbEcrans() }));
 });
 
 module.exports = app;
