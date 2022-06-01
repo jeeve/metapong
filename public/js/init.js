@@ -1,4 +1,6 @@
-quiSuisJe();
+const ID = generateUUID();
+
+register(ID);
 
 
 /*

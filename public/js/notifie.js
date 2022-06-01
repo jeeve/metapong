@@ -28,16 +28,27 @@ function notifieServeur(message) {
   });
 }
 
-function quiSuisJe() {
+function register(ID) {
 
   const init = {
-    method: "GET",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: ID,
+    }),
     mode: "cors",
     credentials: "same-origin",
   };
 
-
-  fetch("http://localhost:5500/quisuisje/", init).then(response => response.json())
-  .then(response => document.querySelector("#ecran").innerHTML = JSON.stringify(response));
+  fetch("http://localhost:5500/register/", init).then(response => response.json())
+   .then(response => document.querySelector("#ecran").innerHTML = JSON.stringify(response));
 
 }
+
+
+//  fetch("http://localhost:5500/quisuisje/", init).then(response => response.json())
+//  .then(response => document.querySelector("#ecran").innerHTML = JSON.stringify(response));
+
+

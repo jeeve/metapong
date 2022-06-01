@@ -1,6 +1,6 @@
 const express = require('express');
-
 const app = express();
+const bodyParser = require('body-parser');
 
 app.use(express.static('public'));
 app.get('/', function(request, response) {
@@ -15,10 +15,10 @@ app.get('/init/:nbEcrans', (req, res) => {
     res.end(JSON.stringify({ nbEcrans: infos.nbEcrans }));
 });
 
-app.get('/quisuisje/', (req, res) => {
+app.post('/register/', (req, res) => {
   infos.ajouteEcran();
   res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify({ nbEcrans: infos.getNbEcrans() }));
+  res.end(JSON.stringify({ id: req.body.id, nbEcrans: infos.getNbEcrans() }));
 });
 
 module.exports = app;
