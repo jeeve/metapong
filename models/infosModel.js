@@ -2,6 +2,7 @@ class InfosModel {
   constructor() {
     this.nbEcrans = 0;
     this.decor = { blocs: [] };
+    this.balle = { x: 60, y: 50 };
 
     for (let i = 0; i < 300; i++) {
       this.decor.blocs.push({ x: i, y: 0 });
@@ -45,6 +46,19 @@ class InfosModel {
       }
     }
     return { blocs: blocs };
+  }
+
+  blocEn(x, y) {
+    let OK = false;
+    this.blocs.forEach(function (bloc) {
+      let xb = parseFloat(bloc.getAttribute("x"));
+      let yb = parseFloat(bloc.getAttribute("y"));
+      if (distance(xb + 5 / 2, yb + 5 / 2, x, y) <= 5 / 2) {
+        OK = true;
+        return;
+      }
+    });
+    return OK;
   }
 }
 
