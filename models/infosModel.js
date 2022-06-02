@@ -21,6 +21,10 @@ class InfosModel {
     return this.nbEcrans;
   }
 
+  getDecor() {
+    return { decor : "toto" };
+  }
+
 }
 
 let infos = new InfosModel();
