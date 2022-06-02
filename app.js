@@ -25,7 +25,7 @@ app.get('/register/', (req, res) => {
 
 app.post('/decor/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify({ decor: infos.getDecor(req.body.id) }));
+  res.end(JSON.stringify(infos.getDecor(req.body.id)));
 });
 
 module.exports = app;

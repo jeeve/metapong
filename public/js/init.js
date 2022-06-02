@@ -5,6 +5,7 @@ const numeroEcran = 0;
 register().then((data) => dessine(data.id));
 
 function dessine(id) {
+  console.log(id);
   getDecor(id).then((data) => dessineDecor(data));
 }
 
