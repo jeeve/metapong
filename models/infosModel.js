@@ -25,4 +25,4 @@ class InfosModel {
 
 let infos = new InfosModel();
 
-module.exports = { InfosModel, infos };
+module.exports = { infos };

@@ -28,6 +28,23 @@ function notifieServeur(message) {
   });
 }
 
+async function register() {
+
+  let id = 0;
+
+  const init = {
+    method: "GET",
+    mode: "cors",
+    credentials: "same-origin",
+  };
+
+  await fetch("http://localhost:5500/register/", init).then(response => response.json())
+  .then(response => { id = response });
+
+  return id;
+}
+
+/*
 function register(ID) {
 
   const init = {
@@ -46,7 +63,7 @@ function register(ID) {
    .then(response => document.querySelector("#ecran").innerHTML = JSON.stringify(response));
 
 }
-
+*/
 
 //  fetch("http://localhost:5500/quisuisje/", init).then(response => response.json())
 //  .then(response => document.querySelector("#ecran").innerHTML = JSON.stringify(response));

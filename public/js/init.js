@@ -1,6 +1,8 @@
-const ID = generateUUID();
+//const ID = generateUUID();
 
-register(ID);
+const numeroEcran = 0;
+
+register().then(data => document.querySelector("#ecran").innerHTML = JSON.stringify(data));
 
 
 /*
