@@ -21,8 +21,13 @@ class InfosModel {
     return this.nbEcrans;
   }
 
-  getDecor() {
-    return { decor : "toto" };
+  getDecor(numeroEcran) {
+    let blocs = [];
+    for (let i = 0; i < 60; i++) {
+       blocs.push({ x : i, y : 0 });
+       blocs.push({ x : i, y : 94 });   
+    }
+    return { blocs : blocs };
   }
 
 }

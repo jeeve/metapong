@@ -8,32 +8,12 @@ function dessine(id) {
   getDecor(id).then((data) => dessineDecor(data));
 }
 
-async function getDecor(id) {
-  decor = {};
-
-  const init = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id: id,
-    }),
-    mode: "cors",
-    credentials: "same-origin",
-  };
-
-  await fetch("http://localhost:5500/decor/", init)
-    .then((response) => response.json())
-    .then((response) => {
-      decor = JSON.stringify(response);
-    });
-
-  return decor;
-}
-
 function dessineDecor(decor) {
-  document.querySelector("#ecran").innerHTML = decor;
+  console.log(decor);
+
+  for (let i = 0; i < decor.blocs.length; i++) {
+    creeBloc(decor.blocs[i].x, decor.blocs[i].y);
+  }
 }
 
 /*

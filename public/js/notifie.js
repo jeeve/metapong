@@ -44,6 +44,29 @@ async function register() {
   return id;
 }
 
+async function getDecor(id) {
+  decor = {};
+
+  const init = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: id,
+    }),
+    mode: "cors",
+    credentials: "same-origin",
+  };
+
+  await fetch("http://localhost:5500/decor/", init)
+    .then((response) => response.json())
+    .then((response) => {
+      decor = response;
+    });
+
+  return decor;
+}
 /*
 function register(ID) {
 
