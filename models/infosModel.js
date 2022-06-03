@@ -35,12 +35,11 @@ class InfosModel {
 
     decor.balle.cx = this.decor.balle.cx - (numeroEcran-1)*100;
 
-    let blocs = [];
     for (let i = 0; i < this.decor.blocs.length; i++) {
         decor.blocs.push(this.decor.blocs[i]);
         decor.blocs[i].x = this.decor.blocs[i].x - (numeroEcran-1)*100;
     }
-    
+
     return decor;
   }
 
