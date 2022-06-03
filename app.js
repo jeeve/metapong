@@ -28,4 +28,9 @@ app.post('/render/', (req, res) => {
   res.end(JSON.stringify(infos.render(req.body.id)));
 });
 
+app.post('/balle/', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(infos.balle(req.body.id)));
+});
+
 module.exports = app;

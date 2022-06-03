@@ -67,6 +67,30 @@ async function getDecor(id) {
 
   return decor;
 }
+
+async function getBalle(id) {
+  balle = {};
+
+  const init = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: id,
+    }),
+    mode: "cors",
+    credentials: "same-origin",
+  };
+
+  await fetch("http://localhost:5500/balle/", init)
+    .then((response) => response.json())
+    .then((response) => {
+      balle = response;
+    });
+
+  return balle;
+}
 /*
 function register(ID) {
 

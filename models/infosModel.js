@@ -1,7 +1,7 @@
 class InfosModel {
   constructor() {
     this.nbEcrans = 0;
-    this.decor = { blocs: [], balle: { cx: 60, cy: 50, vx: 5, vy: 3 } };
+    this.decor = { blocs: [], balle: { cx: 60, cy: 50, vx: 0.5, vy: 0.4 } };
 
     for (let i = 0; i < 300; i++) {
       this.decor.blocs.push({ x: i, y: 0 });
@@ -64,6 +64,24 @@ class InfosModel {
     return decor;
   }
 
+  balle(numeroEcran) {
+    let b = {
+      cx: this.decor.balle.cx,
+      cy: this.decor.balle.cy,
+      vx: this.decor.balle.vx,
+      vy: this.decor.balle.vy,
+    };
+
+    if (numeroEcran == 2) {
+      b.cx = this.decor.balle.cx - 100;
+    }
+    if (numeroEcran == 3) {
+      b.cx = this.decor.balle.cx - 200;
+    }
+
+    return b;
+  }
+
   blocEn(x, y) {
     function distance(x1, y1, x2, y2) {
       return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
@@ -107,6 +125,6 @@ class InfosModel {
 
 let infos = new InfosModel();
 
-setInterval(infos.avanceTemps.bind(infos), 1000);
+setInterval(infos.avanceTemps.bind(infos), 100);
 
 module.exports = { infos };

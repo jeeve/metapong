@@ -4,13 +4,13 @@ let ID = 0;
 
 register().then((data) => { 
   ID = data.id;
-  setInterval(dessine, 1000);
+  getDecor(ID).then((data) => dessineDecor(data));
+  setInterval(avanceTemps, 100);
 });
 
-function dessine() {
-  console.log(ID);
-  efface();
-  getDecor(ID).then((data) => dessineDecor(data));
+function avanceTemps() {
+    let balle = {};
+    getBalle(ID).then((data) => deplaceBalle(data));
 }
 
 function dessineDecor(decor) {
