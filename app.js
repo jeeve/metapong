@@ -12,7 +12,8 @@ app.get('/', function(request, response) {
 const { infos } = require('./models/infosModel');
 
 app.get('/init/:nbEcrans', (req, res) => {
-    infos.nbEcrans = Number(req.params.nbEcrans);
+    infos.nbEcrans = Number(req.params.nbEcrans)-1;
+    infos.ajouteEcran();
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ nbEcrans: infos.nbEcrans }));
 });

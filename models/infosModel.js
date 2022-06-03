@@ -2,19 +2,20 @@ class InfosModel {
   constructor() {
     this.nbEcrans = 0;
     this.decor = { blocs: [], balle: { cx: 60, cy: 50, vx: 0.5, vy: 0.4 } };
+  }
 
-    for (let i = 0; i < 300; i++) {
+  ajouteEcran() {
+    this.nbEcrans++;
+
+    this.decor = { blocs: [], balle: { cx: 60, cy: 50, vx: 0.5, vy: 0.4 } };
+    for (let i = 0; i < this.nbEcrans*100; i++) {
       this.decor.blocs.push({ x: i, y: 0 });
       this.decor.blocs.push({ x: i, y: 95 });
     }
     for (let j = 0; j < 100; j++) {
       this.decor.blocs.push({ x: 0, y: j });
-      this.decor.blocs.push({ x: 295, y: j });
+      this.decor.blocs.push({ x: this.nbEcrans*100-5, y: j });
     }
-  }
-
-  ajouteEcran() {
-    this.nbEcrans++;
   }
 
   getNbEcrans() {
