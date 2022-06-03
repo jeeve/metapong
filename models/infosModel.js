@@ -2,19 +2,29 @@ class InfosModel {
   constructor() {
     this.nbEcrans = 0;
     this.decor = { blocs: [], balle: { cx: 60, cy: 50, vx: 0.5, vy: 0.4 } };
+    this.tagDecorEstModifie = [];
+    this.tagDecorEstModifie.push(false);
   }
 
   ajouteEcran() {
     this.nbEcrans++;
+    this.decorEstModifie();
 
     this.decor = { blocs: [], balle: { cx: 60, cy: 50, vx: 0.5, vy: 0.4 } };
-    for (let i = 0; i < this.nbEcrans*100; i++) {
+    for (let i = 0; i < this.nbEcrans * 100; i++) {
       this.decor.blocs.push({ x: i, y: 0 });
       this.decor.blocs.push({ x: i, y: 95 });
     }
     for (let j = 0; j < 100; j++) {
       this.decor.blocs.push({ x: 0, y: j });
-      this.decor.blocs.push({ x: this.nbEcrans*100-5, y: j });
+      this.decor.blocs.push({ x: this.nbEcrans * 100 - 5, y: j });
+    }
+  }
+
+  decorEstModifie() {
+    this.tagDecorEstModifie = [];
+    for (let i = 0; i < this.nbEcrans + 1; i++) {
+      this.tagDecorEstModifie.push(true);
     }
   }
 
@@ -33,11 +43,11 @@ class InfosModel {
       },
     };
 
-    decor.balle.cx = this.decor.balle.cx - (numeroEcran-1)*100;
+    decor.balle.cx = this.decor.balle.cx - (numeroEcran - 1) * 100;
 
     for (let i = 0; i < this.decor.blocs.length; i++) {
-        decor.blocs.push(this.decor.blocs[i]);
-        decor.blocs[i].x = this.decor.blocs[i].x - (numeroEcran-1)*100;
+      decor.blocs.push(this.decor.blocs[i]);
+      decor.blocs[i].x = this.decor.blocs[i].x - (numeroEcran - 1) * 100;
     }
 
     return decor;
@@ -99,6 +109,14 @@ class InfosModel {
     this.decor.balle.cy = y2;
     this.decor.balle.vx = vx;
     this.decor.balle.vy = vy;
+  }
+
+  setTagDecorEstModifie(id, x) {
+    this.tagDecorEstModifie[id] = x;
+  }
+
+  getTagDecorEstModifie(id) {
+    return this.tagDecorEstModifie[id];
   }
 }
 

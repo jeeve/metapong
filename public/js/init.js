@@ -13,7 +13,6 @@ function init() {
   initNbEcrans(1);
   ID = 1;
   document.querySelector('#numero-ecran').innerHTML = ID;
-  document.querySelector('svg').innerHTML = '';
   getDecor(ID).then((data) => dessineDecor(data));
 }
 
@@ -23,8 +22,19 @@ function avanceTemps() {
 }
 
 function dessineDecor(decor) {
+  efface();
   for (let i = 0; i < decor.blocs.length; i++) {
     creeBloc(decor.blocs[i].x, decor.blocs[i].y);
   }
   creeBalle(decor.balle);
 }
+
+function raffraichitDecor() {
+  tagDecorEstModifie(ID).then((data) => {
+    if (data.tag) {
+      getDecor(ID).then((data) => dessineDecor(data));
+    }
+  });
+}
+
+setInterval(raffraichitDecor, 5000);

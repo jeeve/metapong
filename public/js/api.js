@@ -71,4 +71,23 @@ async function getBalle(id) {
   return balle;
 }
 
+async function tagDecorEstModifie(id) {
+  let estModifie = false;
+
+  const init = {
+    method: "GET",
+    mode: "cors",
+    credentials: "same-origin",
+  };
+
+  await fetch("/decorestmodifie/" + id, init)
+  .then((response) => response.json())
+  .then((response) => {
+    estModifie = response.tag;
+  });
+
+  console.log(estModifie);
+  return estModifie;
+}
+
 

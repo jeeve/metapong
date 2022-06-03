@@ -34,4 +34,12 @@ app.post('/balle/', (req, res) => {
   res.end(JSON.stringify(infos.balle(req.body.id)));
 });
 
+app.get('/decorestmodifie/:numeroEcran', (req, res) => {
+  let numeroEcran = Number(req.params.numeroEcran);
+  let estModifie = infos.getTagDecorEstModifie(numeroEcran);
+  infos.setTagDecorEstModifie(numeroEcran, false);
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify({ tag: estModifie }));
+});
+
 module.exports = app;

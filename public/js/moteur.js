@@ -11,31 +11,7 @@ function blocEn(x, y) {
   });
   return OK;
 }
-/*
-function avanceTemps() {
-  const balle = document.querySelector("circle");
-  let vx = parseFloat(balle.getAttribute("vx"));
-  let vy = parseFloat(balle.getAttribute("vy"));
 
-  let x1 = parseFloat(balle.getAttribute("cx"));
-  let y1 = parseFloat(balle.getAttribute("cy"));
-
-  if (blocEn(x1 + 1 / 2 + vx, y1 + 1 / 2)) {
-    vx = -vx;
-  } else {
-    if (blocEn(x1 + 1 / 2, y1 + 1 / 2 + vy)) {
-      vy = -vy;
-    }
-  }
-
-  let x2 = x1 + vx;
-  let y2 = y1 + vy;
-  balle.setAttribute("cx", x2 + "%");
-  balle.setAttribute("cy", y2 + "%");
-  balle.setAttribute("vx", vx);
-  balle.setAttribute("vy", vy);
-}
-*/
 function creeBloc(x, y) {
   var svg = document.getElementsByTagName("svg")[0];
 
