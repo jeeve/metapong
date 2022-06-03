@@ -33,35 +33,14 @@ class InfosModel {
       },
     };
 
-    if (numeroEcran == 2) {
-      decor.balle.cx = this.decor.balle.cx - 100;
-    }
-    if (numeroEcran == 3) {
-      decor.balle.cx = this.decor.balle.cx - 200;
-    }
+    decor.balle.cx = this.decor.balle.cx - (numeroEcran-1)*100;
 
     let blocs = [];
     for (let i = 0; i < this.decor.blocs.length; i++) {
-      if (numeroEcran == 1 && this.decor.blocs[i].x < 100) {
         decor.blocs.push(this.decor.blocs[i]);
-      }
-      if (
-        numeroEcran == 2 &&
-        this.decor.blocs[i].x > 100 &&
-        this.decor.blocs[i].x < 200
-      ) {
-        decor.blocs.push({
-          x: this.decor.blocs[i].x - 100,
-          y: this.decor.blocs[i].y,
-        });
-      }
-      if (numeroEcran == 3 && this.decor.blocs[i].x > 200) {
-        decor.blocs.push({
-          x: this.decor.blocs[i].x - 200,
-          y: this.decor.blocs[i].y,
-        });
-      }
+        decor.blocs[i].x = this.decor.blocs[i].x - (numeroEcran-1)*100;
     }
+    
     return decor;
   }
 
