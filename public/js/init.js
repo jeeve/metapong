@@ -1,7 +1,5 @@
 //const ID = generateUUID();
 
-const numeroEcran = 0;
-
 register().then((data) => dessine(data.id));
 
 function dessine(id) {
@@ -15,6 +13,8 @@ function dessineDecor(decor) {
   for (let i = 0; i < decor.blocs.length; i++) {
     creeBloc(decor.blocs[i].x, decor.blocs[i].y);
   }
+
+  creeBalle(decor.balle);
 }
 
 /*

@@ -23,9 +23,9 @@ app.get('/register/', (req, res) => {
   res.end(JSON.stringify({ id: infos.getNbEcrans() }));
 });
 
-app.post('/decor/', (req, res) => {
+app.post('/render/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(infos.getDecor(req.body.id)));
+  res.end(JSON.stringify(infos.render(req.body.id)));
 });
 
 module.exports = app;

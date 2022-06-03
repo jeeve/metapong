@@ -52,6 +52,18 @@ function creeBloc(x, y) {
   svg.appendChild(rect);
 }
 
+function creeBalle(balle) {
+  let svg = document.getElementsByTagName("svg")[0];
+
+  let cercle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  cercle.setAttribute("cx", balle.cx + "%");
+  cercle.setAttribute("cy", balle.cy + "%");
+  cercle.setAttribute("r", "1%");
+  cercle.setAttribute("fill", "white");
+
+  svg.appendChild(cercle);
+}
+
 function creeMurHorizontal(y) {
   for (let i = 0; i < 20; i++) {
     creeBloc(i * 5, y);

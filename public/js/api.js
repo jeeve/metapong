@@ -59,7 +59,7 @@ async function getDecor(id) {
     credentials: "same-origin",
   };
 
-  await fetch("http://localhost:5500/decor/", init)
+  await fetch("http://localhost:5500/render/", init)
     .then((response) => response.json())
     .then((response) => {
       decor = response;
