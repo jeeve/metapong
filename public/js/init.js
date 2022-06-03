@@ -5,7 +5,7 @@ let ID = 0;
 register().then((data) => { 
   ID = data.id;
   getDecor(ID).then((data) => dessineDecor(data));
-  setInterval(avanceTemps, 100);
+  setInterval(avanceTemps, 10);
 });
 
 function avanceTemps() {

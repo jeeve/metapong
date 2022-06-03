@@ -125,6 +125,6 @@ class InfosModel {
 
 let infos = new InfosModel();
 
-setInterval(infos.avanceTemps.bind(infos), 100);
+setInterval(infos.avanceTemps.bind(infos), 10);
 
 module.exports = { infos };
