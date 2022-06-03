@@ -8,7 +8,7 @@ async function register() {
     credentials: "same-origin",
   };
 
-  await fetch("http://localhost:5500/register/", init).then(response => response.json())
+  await fetch("/register/", init).then(response => response.json())
   .then(response => { id = response });
 
   return id;
@@ -20,7 +20,7 @@ function initNbEcrans(nbEcrans) {
     mode: "cors",
     credentials: "same-origin",
   };
-  fetch("http://localhost:5500/init/" + nbEcrans, init);
+  fetch("/init/" + nbEcrans, init);
 }
 
 async function getDecor(id) {
@@ -38,7 +38,7 @@ async function getDecor(id) {
     credentials: "same-origin",
   };
 
-  await fetch("http://localhost:5500/render/", init)
+  await fetch("/render/", init)
     .then((response) => response.json())
     .then((response) => {
       decor = response;
@@ -62,7 +62,7 @@ async function getBalle(id) {
     credentials: "same-origin",
   };
 
-  await fetch("http://localhost:5500/balle/", init)
+  await fetch("/balle/", init)
     .then((response) => response.json())
     .then((response) => {
       balle = response;
