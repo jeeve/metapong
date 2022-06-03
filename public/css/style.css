@@ -17,3 +17,15 @@ svg {
 #ecran {
     color: black;
 }
+
+#controle {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 25px;
+    z-index: 999;
+    background-color: #888;
+    width: 100%;
+    padding: 5px;
+    color: #6AE8AC;
+}

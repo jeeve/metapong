@@ -44,6 +44,15 @@ async function register() {
   return id;
 }
 
+function initNbEcrans(nbEcrans) {
+  const init = {
+    method: "GET",
+    mode: "cors",
+    credentials: "same-origin",
+  };
+  fetch("http://localhost:5500/init/" + nbEcrans, init);
+}
+
 async function getDecor(id) {
   decor = {};
 
