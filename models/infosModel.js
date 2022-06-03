@@ -1,6 +1,6 @@
 class InfosModel {
   constructor() {
-    this.nbEcrans = 3;
+    this.nbEcrans = 0;
     this.decor = { blocs: [], balle: { cx: 60, cy: 50, vx: 10, vy: 5 } };
 
     for (let i = 0; i < 300; i++) {
