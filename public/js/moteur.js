@@ -1,5 +1,3 @@
-//setInterval(avanceTemps, 10);
-
 function blocEn(x, y) {
   let OK = false;
   const blocs = document.querySelectorAll("rect");
@@ -78,4 +76,9 @@ function creeMurVertical(x) {
 
 function distance(x1, y1, x2, y2) {
   return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+}
+
+function efface() {
+  let svg = document.getElementsByTagName("svg")[0];  
+  svg.innerHTML = '';
 }

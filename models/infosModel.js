@@ -1,6 +1,6 @@
 class InfosModel {
   constructor() {
-    this.nbEcrans = 0;
+    this.nbEcrans = 3;
     this.decor = { blocs: [], balle: { cx: 60, cy: 50, vx: 10, vy: 5 } };
 
     for (let i = 0; i < 300; i++) {
@@ -65,10 +65,14 @@ class InfosModel {
   }
 
   blocEn(x, y) {
+    function distance(x1, y1, x2, y2) {
+      return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+    }
+
     let OK = false;
-    this.blocs.forEach(function (bloc) {
-      let xb = parseFloat(bloc.getAttribute("x"));
-      let yb = parseFloat(bloc.getAttribute("y"));
+    this.decor.blocs.forEach(function (bloc) {
+      let xb = bloc.x;
+      let yb = bloc.y;
       if (distance(xb + 5 / 2, yb + 5 / 2, x, y) <= 5 / 2) {
         OK = true;
         return;
@@ -77,34 +81,32 @@ class InfosModel {
     return OK;
   }
 
-  distance(x1, y1, x2, y2) {
-    return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-  }
-
   avanceTemps() {
-    let vx = this.balle.vx;
-    let vy = this.balle.vy;
+    let vx = this.decor.balle.vx;
+    let vy = this.decor.balle.vy;
 
-    let x1 = this.balle.cx;
-    let y1 = this.balle.cy;
+    let x1 = this.decor.balle.cx;
+    let y1 = this.decor.balle.cy;
 
-    if (blocEn(x1 + 1 / 2 + vx, y1 + 1 / 2)) {
+    if (this.blocEn(x1 + 1 / 2 + vx, y1 + 1 / 2)) {
       vx = -vx;
     } else {
-      if (blocEn(x1 + 1 / 2, y1 + 1 / 2 + vy)) {
+      if (this.blocEn(x1 + 1 / 2, y1 + 1 / 2 + vy)) {
         vy = -vy;
       }
     }
 
     let x2 = x1 + vx;
     let y2 = y1 + vy;
-    this.balle.cx = x2;
-    this.balle.cy = y2;
-    this.balle.vx = vx;
-    this.balle.vy = vy;
+    this.decor.balle.cx = x2;
+    this.decor.balle.cy = y2;
+    this.decor.balle.vx = vx;
+    this.decor.balle.vy = vy;
   }
 }
 
 let infos = new InfosModel();
+
+setInterval(infos.avanceTemps.bind(infos), 1000);
 
 module.exports = { infos };

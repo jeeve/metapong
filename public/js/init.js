@@ -1,10 +1,16 @@
 //const ID = generateUUID();
 
-register().then((data) => dessine(data.id));
+let ID = 0;
 
-function dessine(id) {
-  console.log(id);
-  getDecor(id).then((data) => dessineDecor(data));
+register().then((data) => { 
+  ID = data.id;
+  setInterval(dessine, 1000);
+});
+
+function dessine() {
+  console.log(ID);
+  efface();
+  getDecor(ID).then((data) => dessineDecor(data));
 }
 
 function dessineDecor(decor) {
