@@ -44,6 +44,7 @@ async function getDecor(id) {
       decor = response;
     });
 
+  console.log(id);  
   console.log(decor);  
   return decor;
 }
@@ -87,7 +88,6 @@ async function tagDecorEstModifie(id) {
     estModifie.tag = response.tag;
   });
 
-  console.log(estModifie);
   return estModifie;
 }
 

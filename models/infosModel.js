@@ -1,7 +1,7 @@
 class InfosModel {
   constructor() {
     this.nbEcrans = 0;
-    this.decor = { blocs: [], balle: { cx: 60, cy: 50, vx: 0.5, vy: 0.4 } };
+    this.decor = {};
     this.tagDecorEstModifie = [];
     this.tagDecorEstModifie.push(false);
   }
@@ -47,7 +47,8 @@ class InfosModel {
 
     for (let i = 0; i < this.decor.blocs.length; i++) {
       if (this.blocEstDansDecor(this.decor.blocs[i], numeroEcran)) {
-        decor.blocs.push(this.decor.blocs[i]);
+        let b = { x: this.decor.blocs[i].x, y: this.decor.blocs[i].y };
+        decor.blocs.push(b);
         decor.blocs[decor.blocs.length-1].x = this.decor.blocs[i].x - (numeroEcran - 1) * 100;
       }
     }
@@ -92,6 +93,8 @@ class InfosModel {
   }
 
   avanceTemps() {
+    if (this.nbEcrans == 0) return;
+
     let vx = this.decor.balle.vx;
     let vy = this.decor.balle.vy;
 
