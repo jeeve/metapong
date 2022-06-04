@@ -46,11 +46,19 @@ class InfosModel {
     decor.balle.cx = this.decor.balle.cx - (numeroEcran - 1) * 100;
 
     for (let i = 0; i < this.decor.blocs.length; i++) {
-      decor.blocs.push(this.decor.blocs[i]);
-      decor.blocs[i].x = this.decor.blocs[i].x - (numeroEcran - 1) * 100;
+      if (this.blocEstDansDecor(this.decor.blocs[i], numeroEcran)) {
+        decor.blocs.push(this.decor.blocs[i]);
+        decor.blocs[decor.blocs.length-1].x = this.decor.blocs[i].x - (numeroEcran - 1) * 100;
+      }
     }
 
     return decor;
+  }
+
+  blocEstDansDecor(bloc, numeroEcran) {
+    let xmin = (numeroEcran - 1) * 100;
+    let xmax = xmin + 100; 
+    return bloc.x >= xmin && bloc.x < xmax;
   }
 
   balle(numeroEcran) {
