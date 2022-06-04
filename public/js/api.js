@@ -44,6 +44,7 @@ async function getDecor(id) {
       decor = response;
     });
 
+  console.log(decor);  
   return decor;
 }
 
