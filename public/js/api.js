@@ -72,7 +72,7 @@ async function getBalle(id) {
 }
 
 async function tagDecorEstModifie(id) {
-  let estModifie = false;
+  let estModifie = { tag: false };
 
   const init = {
     method: "GET",
@@ -83,7 +83,7 @@ async function tagDecorEstModifie(id) {
   await fetch("/decorestmodifie/" + id, init)
   .then((response) => response.json())
   .then((response) => {
-    estModifie = response.tag;
+    estModifie.tag = response.tag;
   });
 
   console.log(estModifie);

@@ -17,7 +17,6 @@ function init() {
 }
 
 function avanceTemps() {
-  let balle = {};
   getBalle(ID).then((data) => deplaceBalle(data));
 }
 

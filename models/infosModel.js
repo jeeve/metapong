@@ -42,7 +42,7 @@ class InfosModel {
         vy: this.decor.balle.vy,
       },
     };
-
+  
     decor.balle.cx = this.decor.balle.cx - (numeroEcran - 1) * 100;
 
     for (let i = 0; i < this.decor.blocs.length; i++) {
@@ -61,12 +61,7 @@ class InfosModel {
       vy: this.decor.balle.vy,
     };
 
-    if (numeroEcran == 2) {
-      b.cx = this.decor.balle.cx - 100;
-    }
-    if (numeroEcran == 3) {
-      b.cx = this.decor.balle.cx - 200;
-    }
+    b.cx = this.decor.balle.cx - (numeroEcran - 1) * 100;
 
     return b;
   }
