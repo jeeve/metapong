@@ -1,17 +1,3 @@
-function blocEn(x, y) {
-  let OK = false;
-  const blocs = document.querySelectorAll("rect");
-  blocs.forEach(function (bloc) {
-    let xb = parseFloat(bloc.getAttribute("x"));
-    let yb = parseFloat(bloc.getAttribute("y"));
-    if (distance(xb + 5 / 2, yb + 5 / 2, x, y) <= 5 / 2) {
-      OK = true;
-      return;
-    }
-  });
-  return OK;
-}
-
 function creeBloc(x, y) {
   var svg = document.getElementsByTagName("svg")[0];
 
@@ -43,24 +29,6 @@ function deplaceBalle(balle) {
 
   cercle.setAttribute("cx", balle.cx + "%");
   cercle.setAttribute("cy", balle.cy + "%");
-//  cercle.setAttribute("r", "1%");
-//  cercle.setAttribute("fill", "white");
-}
-
-function creeMurHorizontal(y) {
-  for (let i = 0; i < 20; i++) {
-    creeBloc(i * 5, y);
-  }
-}
-
-function creeMurVertical(x) {
-  for (let i = 0; i < 20; i++) {
-    creeBloc(x, i * 5);
-  }
-}
-
-function distance(x1, y1, x2, y2) {
-  return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
 
 function efface() {
