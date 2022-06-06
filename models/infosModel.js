@@ -1,7 +1,7 @@
 class InfosModel {
   constructor() {
     this.nbEcrans = 0;
-    this.decor = {};
+    this.decor = { raquettes: [] };
     this.tagDecorEstModifie = [];
     this.tagDecorEstModifie.push(false);
   }
@@ -10,7 +10,8 @@ class InfosModel {
     this.nbEcrans++;
     this.decorEstModifie();
 
-    this.decor = { blocs: [], balle: { cx: 60, cy: 50, vx: 0.5, vy: 0.4 } };
+    this.decor.blocs = [];
+    this.decor.balle = { cx: 60, cy: 50, vx: 0.5, vy: 0.4 };
     for (let i = 0; i < this.nbEcrans * 100; i++) {
       this.decor.blocs.push({ x: i, y: 0 });
       this.decor.blocs.push({ x: i, y: 95 });
@@ -19,6 +20,8 @@ class InfosModel {
       this.decor.blocs.push({ x: 0, y: j });
       this.decor.blocs.push({ x: this.nbEcrans * 100 - 5, y: j });
     }
+
+    this.decor.raquettes.push({ x: 50, y: 50 });
   }
 
   decorEstModifie() {
@@ -41,6 +44,7 @@ class InfosModel {
         vx: this.decor.balle.vx,
         vy: this.decor.balle.vy,
       },
+      raquette: { x: this.decor.raquettes[numeroEcran-1].x - (numeroEcran - 1) * 100, y: this.decor.raquettes[numeroEcran-1].y }
     };
   
     decor.balle.cx = this.decor.balle.cx - (numeroEcran - 1) * 100;
@@ -84,6 +88,15 @@ class InfosModel {
     this.decor.blocs.forEach(function (bloc) {
       let xb = bloc.x;
       let yb = bloc.y;
+      if (distance(xb + 5 / 2, yb + 5 / 2, x, y) <= 5 / 2) {
+        OK = true;
+        return;
+      }
+    });
+
+    this.decor.raquettes.forEach(function (raquette) {
+      let xb = raquette.x;
+      let yb = raquette.y;
       if (distance(xb + 5 / 2, yb + 5 / 2, x, y) <= 5 / 2) {
         OK = true;
         return;

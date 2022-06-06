@@ -73,6 +73,30 @@ async function getBalle(id) {
   return balle;
 }
 
+async function getRaquette(id) {
+  raquette = {};
+
+  const init = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: id,
+    }),
+    mode: "cors",
+    credentials: "same-origin",
+  };
+
+  await fetch("/raquette/", init)
+    .then((response) => response.json())
+    .then((response) => {
+      raquette = response;
+    });
+
+  return raquette;
+}
+
 async function tagDecorEstModifie(id) {
   let estModifie = { tag: false };
 
