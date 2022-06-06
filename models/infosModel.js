@@ -4,6 +4,8 @@ class InfosModel {
     this.decor = { raquettes: [] };
     this.tagDecorEstModifie = [];
     this.tagDecorEstModifie.push(false);
+    this.score = { a: 0, b: 0 };
+    this.tempoScore = 0;
   }
 
   ajouteEcran() {
@@ -122,6 +124,8 @@ class InfosModel {
   avanceTemps() {
     if (this.nbEcrans == 0) return;
 
+    this.testAPerdu();
+
     let vx = this.decor.balle.vx;
     let vy = this.decor.balle.vy;
 
@@ -144,12 +148,31 @@ class InfosModel {
     this.decor.balle.vy = vy;
   }
 
+  testAPerdu() {
+    if (this.decor.balle.cx - this.decor.balle.vx < 10 && this.tempoScore == 0) {
+      this.score.b++;
+      this.tempoScore = 50;
+    }
+    if (this.decor.balle.cx + this.decor.balle.vx > this.nbEcrans*100-10 && this.tempoScore == 0) {
+      this.score.a++;
+      this.tempoScore = 50;
+    }
+    this.tempoScore--;
+    if (this.tempoScore < 0) {
+      this.tempoScore = 0;
+    }
+  }
+
   setTagDecorEstModifie(id, x) {
     this.tagDecorEstModifie[id] = x;
   }
 
   getTagDecorEstModifie(id) {
     return this.tagDecorEstModifie[id];
+  }
+
+  getScore() {
+    return this.score;
   }
 }
 

@@ -29,3 +29,9 @@ svg {
     padding: 5px;
     color: black;
 }
+
+#score {
+    float: right;
+    text-align: right;
+    margin-right: 10px;
+}

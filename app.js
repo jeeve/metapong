@@ -13,6 +13,7 @@ const { infos } = require('./models/infosModel');
 
 app.get('/init/:nbEcrans', (req, res) => {
     infos.nbEcrans = Number(req.params.nbEcrans)-1;
+    infos.score = { a: 0, b: 0 };
     infos.ajouteEcran();
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ nbEcrans: infos.nbEcrans }));
@@ -50,6 +51,11 @@ app.get('/decorestmodifie/:numeroEcran', (req, res) => {
   infos.setTagDecorEstModifie(numeroEcran, false);
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify({ tag: estModifie }));
+});
+
+app.get('/score/', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(infos.getScore()));
 });
 
 module.exports = app;

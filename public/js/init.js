@@ -18,6 +18,7 @@ function init() {
 
 function avanceTemps() {
   getBalle(ID).then((data) => deplaceBalle(data));
+  afficheScore();
 }
 
 function dessineDecor(decor) {

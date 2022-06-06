@@ -55,8 +55,13 @@ function deplaceRaquette(dy) {
   });
 }
 
-
 function efface() {
   let svg = document.getElementsByTagName("svg")[0];  
   svg.innerHTML = '';
+}
+
+function afficheScore() {
+  getScore().then(function (score) {
+    document.querySelector('#score').innerHTML = score.a + ' - ' + score.b;
+  });
 }
