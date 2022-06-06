@@ -21,7 +21,11 @@ class InfosModel {
       this.decor.blocs.push({ x: this.nbEcrans * 100 - 5, y: j });
     }
 
-    this.decor.raquettes.push([{ x: 50 + (this.nbEcrans-1) * 100, y: 50 }, { x: 50 + (this.nbEcrans-1) * 100, y: 55 }, { x: 50 + (this.nbEcrans-1) * 100, y: 60 }]);
+    this.decor.raquettes.push([
+      { x: 50 + (this.nbEcrans - 1) * 100, y: 50 },
+      { x: 50 + (this.nbEcrans - 1) * 100, y: 55 },
+      { x: 50 + (this.nbEcrans - 1) * 100, y: 60 },
+    ]);
   }
 
   decorEstModifie() {
@@ -44,20 +48,24 @@ class InfosModel {
         vx: this.decor.balle.vx,
         vy: this.decor.balle.vy,
       },
-      raquette: []
-    }
+      raquette: [],
+    };
 
-    this.decor.raquettes[numeroEcran-1].forEach(function (blocRaquette) {
-      decor.raquette.push({x: blocRaquette.x - (numeroEcran - 1) * 100, y: blocRaquette.y});
+    this.decor.raquettes[numeroEcran - 1].forEach(function (blocRaquette) {
+      decor.raquette.push({
+        x: blocRaquette.x - (numeroEcran - 1) * 100,
+        y: blocRaquette.y,
+      });
     });
-  
+
     decor.balle.cx = this.decor.balle.cx - (numeroEcran - 1) * 100;
 
     for (let i = 0; i < this.decor.blocs.length; i++) {
       if (this.blocEstDansDecor(this.decor.blocs[i], numeroEcran)) {
         let b = { x: this.decor.blocs[i].x, y: this.decor.blocs[i].y };
         decor.blocs.push(b);
-        decor.blocs[decor.blocs.length-1].x = this.decor.blocs[i].x - (numeroEcran - 1) * 100;
+        decor.blocs[decor.blocs.length - 1].x =
+          this.decor.blocs[i].x - (numeroEcran - 1) * 100;
       }
     }
 
@@ -66,7 +74,7 @@ class InfosModel {
 
   blocEstDansDecor(bloc, numeroEcran) {
     let xmin = (numeroEcran - 1) * 100;
-    let xmax = xmin + 100; 
+    let xmax = xmin + 100;
     return bloc.x >= xmin && bloc.x < xmax;
   }
 
@@ -90,17 +98,24 @@ class InfosModel {
 
     let OK = false;
     this.decor.blocs.forEach(function (bloc) {
-      if (distance(bloc.x + 5 / 2, bloc.y+ 5 / 2, x, y) <= 5 / 2) {
+      if (distance(bloc.x + 5 / 2, bloc.y + 5 / 2, x, y) <= 5 / 2) {
         OK = true;
         return;
       }
     });
     this.decor.raquettes.forEach(function (raquette) {
-      if (distance(raquette.x + 5 / 2, raquette.y + 5 / 2, x, y) <= 5 / 2) {
-        OK = true;
+      raquette.forEach(function (blocRaquette) {
+        if (
+          distance(blocRaquette.x + 5 / 2, blocRaquette.y + 5 / 2, x, y) <=
+          5 / 2
+        ) {
+          OK = true;
+          return;
+        }
         return;
-      }
+      });
     });
+
     return OK;
   }
 
