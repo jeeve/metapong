@@ -86,17 +86,13 @@ class InfosModel {
 
     let OK = false;
     this.decor.blocs.forEach(function (bloc) {
-      let xb = bloc.x;
-      let yb = bloc.y;
-      if (distance(xb + 5 / 2, yb + 5 / 2, x, y) <= 5 / 2) {
+      if (distance(bloc.x + 5 / 2, bloc.y+ 5 / 2, x, y) <= 5 / 2) {
         OK = true;
         return;
       }
     });
     this.decor.raquettes.forEach(function (raquette) {
-      let xb = raquette.x;
-      let yb = raquette.y;
-      if (distance(xb + 5 / 2, yb + 5 / 2, x, y) <= 5 / 2) {
+      if (distance(raquette.x + 5 / 2, raquette.y + 5 / 2, x, y) <= 5 / 2) {
         OK = true;
         return;
       }
