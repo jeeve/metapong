@@ -72,10 +72,8 @@ async function getBalle(id) {
 
   return balle;
 }
-/*
-async function getRaquette(id) {
-  raquette = {};
 
+function bougeRaquette(id, dy) {
   const init = {
     method: "POST",
     headers: {
@@ -83,20 +81,15 @@ async function getRaquette(id) {
     },
     body: JSON.stringify({
       id: id,
+      dy: dy
     }),
     mode: "cors",
     credentials: "same-origin",
   };
 
-  await fetch("/raquette/", init)
-    .then((response) => response.json())
-    .then((response) => {
-      raquette = response;
-    });
-
-  return raquette;
+  fetch("/bougeraquette/", init);
 }
-*/
+
 async function tagDecorEstModifie(id) {
   let estModifie = { tag: false };
 

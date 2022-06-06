@@ -46,6 +46,17 @@ function deplaceBalle(balle) {
   cercle.setAttribute("cy", balle.cy + "%");
 }
 
+
+function deplaceRaquette(dy) {
+  let blocsRaquette = document.querySelectorAll('.raquette');
+  blocsRaquette.forEach(function (bloc) {
+    let y = Number(bloc.getAttribute('y').replace('%', ''));
+    bloc.setAttribute("y", y - dy + "%");    
+  });
+  bougeRaquette(ID, dy);
+}
+
+
 function efface() {
   let svg = document.getElementsByTagName("svg")[0];  
   svg.innerHTML = '';

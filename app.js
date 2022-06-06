@@ -33,12 +33,17 @@ app.post('/balle/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(infos.balle(req.body.id)));
 });
-/*
-app.post('/raquette/', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(infos.decor.raquettes[req.body.id-1]));
+
+app.post('/bougeraquette/', (req, res) => {
+  let id = req.body.id;
+  let dy = req.body.dy;
+  let raquette = infos.decor.raquettes[id-1];
+  raquette.forEach(function (blocRaquette) {
+    blocRaquette.y = blocRaquette.y + dy;
+  });
+  res.end();
 });
-*/
+
 app.get('/decorestmodifie/:numeroEcran', (req, res) => {
   let numeroEcran = Number(req.params.numeroEcran);
   let estModifie = infos.getTagDecorEstModifie(numeroEcran);
