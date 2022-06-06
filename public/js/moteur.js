@@ -12,11 +12,11 @@ function creeBloc(x, y) {
   svg.appendChild(rect);
 }
 
-function creeRaquette(x, y) {
+function creeBlocRaquette(x, y) {
   var svg = document.getElementsByTagName("svg")[0];
 
   var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  rect.setAttribute("id", "raquette");
+  rect.setAttribute("class", "raquette");
   rect.setAttribute("x", x + "%");
   rect.setAttribute("y", y + "%");
   rect.setAttribute("width", "5%");
@@ -44,12 +44,6 @@ function deplaceBalle(balle) {
 
   cercle.setAttribute("cx", balle.cx + "%");
   cercle.setAttribute("cy", balle.cy + "%");
-}
-
-function deplaceRaquette(raquette) {
-  let barre = document.querySelector('#raquette');
-  barre.setAttribute("x", raquette.x + "%");
-  barre.setAttribute("y", raquette.y + "%");
 }
 
 function efface() {

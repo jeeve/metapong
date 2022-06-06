@@ -21,7 +21,7 @@ class InfosModel {
       this.decor.blocs.push({ x: this.nbEcrans * 100 - 5, y: j });
     }
 
-    this.decor.raquettes.push({ x: 50, y: 50 });
+    this.decor.raquettes.push([{ x: 50 + (this.nbEcrans-1) * 100, y: 50 }, { x: 50 + (this.nbEcrans-1) * 100, y: 55 }, { x: 50 + (this.nbEcrans-1) * 100, y: 60 }]);
   }
 
   decorEstModifie() {
@@ -44,8 +44,12 @@ class InfosModel {
         vx: this.decor.balle.vx,
         vy: this.decor.balle.vy,
       },
-      raquette: { x: this.decor.raquettes[numeroEcran-1].x - (numeroEcran - 1) * 100, y: this.decor.raquettes[numeroEcran-1].y }
-    };
+      raquette: []
+    }
+
+    this.decor.raquettes[numeroEcran-1].forEach(function (blocRaquette) {
+      decor.raquette.push({x: blocRaquette.x - (numeroEcran - 1) * 100, y: blocRaquette.y});
+    });
   
     decor.balle.cx = this.decor.balle.cx - (numeroEcran - 1) * 100;
 

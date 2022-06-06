@@ -18,7 +18,6 @@ function init() {
 
 function avanceTemps() {
   getBalle(ID).then((data) => deplaceBalle(data));
-  getRaquette(ID).then((data) => deplaceRaquette(data));
 }
 
 function dessineDecor(decor) {
@@ -28,6 +27,12 @@ function dessineDecor(decor) {
   }
   creeBalle(decor.balle);
   creeRaquette(decor.raquette);
+}
+
+function creeRaquette(raquette) {
+  raquette.forEach(function (blocRaquette) {
+    creeBlocRaquette(blocRaquette.x, blocRaquette.y);
+  });
 }
 
 function raffraichitDecor() {

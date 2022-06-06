@@ -72,7 +72,7 @@ async function getBalle(id) {
 
   return balle;
 }
-
+/*
 async function getRaquette(id) {
   raquette = {};
 
@@ -96,7 +96,7 @@ async function getRaquette(id) {
 
   return raquette;
 }
-
+*/
 async function tagDecorEstModifie(id) {
   let estModifie = { tag: false };
 
