@@ -93,7 +93,6 @@ class InfosModel {
         return;
       }
     });
-
     this.decor.raquettes.forEach(function (raquette) {
       let xb = raquette.x;
       let yb = raquette.y;
