@@ -48,11 +48,13 @@ setInterval(raffraichitDecor, 5000);
 document.addEventListener('keydown', function(event) {
   if (event.code == 'ArrowDown') {
     deplaceRaquette(-5);
+    metAJourRaquette(ID);
   }
 });
 
 document.addEventListener('keydown', function(event) {
   if (event.code == 'ArrowUp') {
     deplaceRaquette(+5);
+    metAJourRaquette(ID);
   }
 });

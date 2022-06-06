@@ -73,7 +73,15 @@ async function getBalle(id) {
   return balle;
 }
 
-function bougeRaquette(id, dy) {
+function metAJourRaquette(id) {
+  let raquette = []; 
+  let blocsRaquette = document.querySelectorAll('.raquette');
+  blocsRaquette.forEach(function (bloc) {
+    let x = Number(bloc.getAttribute('x').replace('%', ''));
+    let y = Number(bloc.getAttribute('y').replace('%', ''));
+    raquette.push( {x: x + (id-1) * 100, y: y} );    
+  });
+
   const init = {
     method: "POST",
     headers: {
@@ -81,13 +89,13 @@ function bougeRaquette(id, dy) {
     },
     body: JSON.stringify({
       id: id,
-      dy: dy
+      raquette: raquette
     }),
     mode: "cors",
     credentials: "same-origin",
   };
 
-  fetch("/bougeraquette/", init);
+  fetch("/metajourraquette/", init);
 }
 
 async function tagDecorEstModifie(id) {

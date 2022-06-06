@@ -34,12 +34,12 @@ app.post('/balle/', (req, res) => {
   res.end(JSON.stringify(infos.balle(req.body.id)));
 });
 
-app.post('/bougeraquette/', (req, res) => {
+app.post('/metajourraquette/', (req, res) => {
   let id = req.body.id;
-  let dy = req.body.dy;
-  let raquette = infos.decor.raquettes[id-1];
+  let raquette = req.body.raquette;
+  infos.decor.raquettes[id-1] = [];
   raquette.forEach(function (blocRaquette) {
-    blocRaquette.y = blocRaquette.y + dy;
+    infos.decor.raquettes[id-1].push({ x: blocRaquette.x, y: blocRaquette.y })
   });
   res.end();
 });

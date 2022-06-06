@@ -53,7 +53,6 @@ function deplaceRaquette(dy) {
     let y = Number(bloc.getAttribute('y').replace('%', ''));
     bloc.setAttribute("y", y - dy + "%");    
   });
-  bougeRaquette(ID, dy);
 }
 
 
