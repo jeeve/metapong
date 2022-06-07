@@ -6,11 +6,13 @@ class InfosModel {
     this.tagDecorEstModifie.push(false);
     this.score = { a: 0, b: 0 };
     this.tempoScore = 0;
+    this.signaux = [];
   }
 
   ajouteEcran() {
     this.nbEcrans++;
     this.decorEstModifie();
+    this.signaux.push({ id: this.nbEcrans, temps: 0 });
 
     this.decor.blocs = [];
     this.decor.balle = { cx: 60, cy: 50, vx: 0.5, vy: 0.4 };
@@ -25,7 +27,7 @@ class InfosModel {
 
     let raquette = [];
     for (let b = 0; b < 4; b++) {
-      raquette.push({ x: 50 + (this.nbEcrans - 1) * 100, y: 50 + b*5 });
+      raquette.push({ x: 50 + (this.nbEcrans - 1) * 100, y: 50 + b * 5 });
     }
     this.decor.raquettes.push(raquette);
   }
@@ -149,11 +151,17 @@ class InfosModel {
   }
 
   testAPerdu() {
-    if (this.decor.balle.cx - this.decor.balle.vx < 10 && this.tempoScore == 0) {
+    if (
+      this.decor.balle.cx - this.decor.balle.vx < 10 &&
+      this.tempoScore == 0
+    ) {
       this.score.b++;
       this.tempoScore = 50;
     }
-    if (this.decor.balle.cx + this.decor.balle.vx > this.nbEcrans*100-10 && this.tempoScore == 0) {
+    if (
+      this.decor.balle.cx + this.decor.balle.vx > this.nbEcrans * 100 - 10 &&
+      this.tempoScore == 0
+    ) {
       this.score.a++;
       this.tempoScore = 50;
     }
@@ -174,10 +182,26 @@ class InfosModel {
   getScore() {
     return this.score;
   }
+
+  anyalseSignaux() {
+    /*
+    let t = new Date();
+    for (let i = 0; i < this.signaux.length; i++) {
+      let signal = this.signaux[i];
+      if (t - signal.temps > 10000) {
+        console.log(t - signal.temps);
+        this.nbEcrans--;
+        this.decorEstModifie();
+        return;
+      }
+    }
+    */
+  }
 }
 
 let infos = new InfosModel();
 
 setInterval(infos.avanceTemps.bind(infos), 10);
+setInterval(infos.anyalseSignaux.bind(infos), 5000);
 
 module.exports = { infos };

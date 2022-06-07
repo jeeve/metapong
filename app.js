@@ -58,4 +58,11 @@ app.get('/score/', (req, res) => {
   res.end(JSON.stringify(infos.getScore()));
 });
 
+app.get('/signal/:numeroEcran', (req, res) => {
+  let numeroEcran = Number(req.params.numeroEcran);
+  infos.signaux[numeroEcran-1].temps = new Date();
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify({ id: numeroEcran }));
+});
+
 module.exports = app;

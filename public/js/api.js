@@ -116,6 +116,24 @@ async function tagDecorEstModifie(id) {
   return estModifie;
 }
 
+async function signal(id) {
+  let nouvelID = id;
+
+  const init = {
+    method: "GET",
+    mode: "cors",
+    credentials: "same-origin",
+  };
+
+  await fetch("/signal/" + id, init)
+  .then((response) => response.json())
+  .then((response) => {
+    nouvelID = response.id;
+  });
+
+  return nouvelID;
+}
+
 async function getScore() {
 
   let score = {};

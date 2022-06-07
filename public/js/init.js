@@ -42,6 +42,9 @@ function raffraichitDecor() {
       getDecor(ID).then((data) => dessineDecor(data));
     }
   });
+  signal(ID).then(function (data) {
+    ID = data;
+  });
 }
 
 setInterval(raffraichitDecor, 5000);
