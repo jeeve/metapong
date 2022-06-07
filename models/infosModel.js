@@ -12,7 +12,7 @@ class InfosModel {
   ajouteEcran() {
     this.nbEcrans++;
     this.decorEstModifie();
-    this.signaux.push({ id: this.nbEcrans, temps: 0 });
+    this.signaux.push({ id: this.nbEcrans, temps: Date.now() });
 
     this.decor.blocs = [];
     this.decor.balle = { cx: 60, cy: 50, vx: 0.5, vy: 0.4 };
@@ -184,18 +184,36 @@ class InfosModel {
   }
 
   anyalseSignaux() {
-    /*
-    let t = new Date();
+    let t = Date.now();
     for (let i = 0; i < this.signaux.length; i++) {
-      let signal = this.signaux[i];
-      if (t - signal.temps > 10000) {
-        console.log(t - signal.temps);
-        this.nbEcrans--;
-        this.decorEstModifie();
+      if (t - this.signaux[i].temps > 10000) {
+        this.enleveEcran();
         return;
       }
     }
-    */
+  }
+
+  enleveEcran() {
+    this.nbEcrans--;
+    this.decorEstModifie();
+    this.signaux.push({ id: this.nbEcrans, temps: Date.now() });
+
+    this.decor.blocs = [];
+    this.decor.balle = { cx: 60, cy: 50, vx: 0.5, vy: 0.4 };
+    for (let i = 0; i < this.nbEcrans * 100; i++) {
+      this.decor.blocs.push({ x: i, y: 0 });
+      this.decor.blocs.push({ x: i, y: 95 });
+    }
+    for (let j = 0; j < 100; j++) {
+      this.decor.blocs.push({ x: 0, y: j });
+      this.decor.blocs.push({ x: this.nbEcrans * 100 - 5, y: j });
+    }
+
+    let raquette = [];
+    for (let b = 0; b < 4; b++) {
+      raquette.push({ x: 50 + (this.nbEcrans - 1) * 100, y: 50 + b * 5 });
+    }
+    this.decor.raquettes.push(raquette);
   }
 }
 

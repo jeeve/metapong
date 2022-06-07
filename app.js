@@ -60,7 +60,7 @@ app.get('/score/', (req, res) => {
 
 app.get('/signal/:numeroEcran', (req, res) => {
   let numeroEcran = Number(req.params.numeroEcran);
-  infos.signaux[numeroEcran-1].temps = new Date();
+  infos.signaux[numeroEcran-1].temps = Date.now();
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify({ id: numeroEcran }));
 });
