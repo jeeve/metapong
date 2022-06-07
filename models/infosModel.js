@@ -197,7 +197,6 @@ class InfosModel {
     this.nbEcrans--;
     this.decorEstModifie();
     this.signaux.pop();
-    this.signaux.push({ id: this.nbEcrans, temps: Date.now() });
 
     this.decor.blocs = [];
     this.decor.balle = { cx: 60, cy: 50, vx: 0.5, vy: 0.4 };
@@ -210,11 +209,7 @@ class InfosModel {
       this.decor.blocs.push({ x: this.nbEcrans * 100 - 5, y: j });
     }
 
-    let raquette = [];
-    for (let b = 0; b < 4; b++) {
-      raquette.push({ x: 50 + (this.nbEcrans - 1) * 100, y: 50 + b * 5 });
-    }
-    this.decor.raquettes.push(raquette);
+    this.decor.raquettes.pop();
   }
 }
 
