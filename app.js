@@ -63,14 +63,14 @@ app.get("/score/", (req, res) => {
 
 app.get("/signal/:numeroEcran", (req, res) => {
   let numeroEcran = Number(req.params.numeroEcran);
-  let nouvelIdEcran = numeroEcran
-  let i = infos.idEcransModifies.findIndex(elt => elt.id == numeroEcran);
+  let nouvelIdEcran = numeroEcran;
+  let i = infos.idEcransModifies.findIndex((elt) => elt.id == numeroEcran);
   if (i != -1) {
-    nouvelIdEcran = infos.idEcransModifies[i].nouvelIdEcran;
-    infos.signaux[nouvelIdEcran - 1].temps = Date.now();
+    nouvelIdEcran = infos.idEcransModifies[i].nouvelId;
     infos.idEcransModifies.splice(i, 1);
-  } else {
-    infos.signaux[numeroEcran - 1].temps = Date.now();
+  }
+  if (numeroEcran <= infos.signaux.length) {
+    infos.signaux[nouvelIdEcran - 1].temps = Date.now();
   }
 
   res.setHeader("Content-Type", "application/json");
