@@ -1,4 +1,4 @@
-let ID = 0;
+let ID = 0;console
 
 document.querySelector("#bouton-init").addEventListener("click", init);
 
@@ -42,9 +42,11 @@ function raffraichitDecor() {
       getDecor(ID).then((data) => dessineDecor(data));
     }
   });
-  signal(ID).then(function (data) {
-    ID = data;
-    document.querySelector("#numero-ecran").innerHTML = ID;
+  signal(ID);
+  idEcranAChange(ID).then((data) => {
+    if (data.aChange) {
+      ID = data.nouvelIdEcran;
+    }
   });
 }
 

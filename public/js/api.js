@@ -44,8 +44,6 @@ async function getDecor(id) {
       decor = response;
     });
 
-  console.log(id);  
-  console.log(decor);  
   return decor;
 }
 
@@ -116,24 +114,6 @@ async function tagDecorEstModifie(id) {
   return estModifie;
 }
 
-async function signal(id) {
-  let nouvelID = id;
-
-  const init = {
-    method: "GET",
-    mode: "cors",
-    credentials: "same-origin",
-  };
-
-  await fetch("/signal/" + id, init)
-  .then((response) => response.json())
-  .then((response) => {
-    nouvelID = response.id;
-  });
-
-  return nouvelID;
-}
-
 async function getScore() {
 
   let score = {};
@@ -148,6 +128,34 @@ async function getScore() {
   .then(response => score = response );
 
   return score;
+}
+
+function signal(id) {
+
+  const init = {
+    method: "GET",
+    mode: "cors",
+    credentials: "same-origin",
+  };
+
+   fetch("/signal/" + id, init);
+
+}
+
+async function idEcranAChange(id) {
+
+  let etat = {};
+
+  const init = {
+    method: "GET",
+    mode: "cors",
+    credentials: "same-origin",
+  };
+
+  await fetch("/idecranachange/" + id , init).then(response => response.json())
+  .then(response => etat = response );
+
+  return etat;
 }
 
 

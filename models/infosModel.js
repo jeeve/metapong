@@ -2,8 +2,7 @@ class InfosModel {
   constructor() {
     this.nbEcrans = 0;
     this.decor = { raquettes: [] };
-    this.tagDecorEstModifie = [];
-    this.tagDecorEstModifie.push(false);
+    this.tagDecorEstModifie = [false];
     this.score = { a: 0, b: 0 };
     this.tempoScore = 0;
     this.signaux = [];
@@ -205,6 +204,7 @@ class InfosModel {
     this.nbEcrans--;
     this.idEcransModifies = [];
     this.signaux.splice(n-1, 1);
+    console.log(this.signaux.length);
     for (let i = n-1; i < this.signaux.length; i++) {
       this.idEcransModifies.push({ id: n+1, nouvelId: n });
     }
