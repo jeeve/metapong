@@ -52,4 +52,4 @@ server.on('listening', () => {
   console.log('Listening on ' + bind);
 });
 
-server.listen(port);
+server.listen(8080, "0.0.0.0");
