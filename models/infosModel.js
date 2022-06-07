@@ -196,6 +196,7 @@ class InfosModel {
   enleveEcran() {
     this.nbEcrans--;
     this.decorEstModifie();
+    this.signaux.pop();
     this.signaux.push({ id: this.nbEcrans, temps: Date.now() });
 
     this.decor.blocs = [];
