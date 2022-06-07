@@ -45,6 +45,7 @@ function raffraichitDecor() {
   signal(ID);
   idEcranAChange(ID).then((data) => {
     if (data.aChange) {
+      console.log(ID);
       ID = data.nouvelIdEcran;
     }
   });

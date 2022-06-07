@@ -63,7 +63,11 @@ app.get("/score/", (req, res) => {
 
 app.get("/signal/:numeroEcran", (req, res) => {
   let numeroEcran = Number(req.params.numeroEcran);
-  infos.signaux[numeroEcran - 1].temps = Date.now();
+  let idEcran = numeroEcran;
+  if (numeroEcran <= infos.signaux.length) {
+    infos.signaux[idEcran-1].temps = Date.now();
+  }
+
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify({ nbEcrans: infos.nbEcrans }));
 });
@@ -81,6 +85,7 @@ app.get("/idecranachange/:numeroEcran", (req, res) => {
     aChange = true;
   }
   res.setHeader("Content-Type", "application/json");
+  //console.log('id a change : ' + aChange +  ' - ' + nouvelIdEcran );
   res.end(JSON.stringify({ aChange: aChange, id: nouvelIdEcran }));
 });
 

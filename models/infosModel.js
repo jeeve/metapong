@@ -204,9 +204,12 @@ class InfosModel {
     this.nbEcrans--;
     this.idEcransModifies = [];
     this.signaux.splice(n-1, 1);
-    console.log(this.signaux.length);
-    for (let i = n-1; i < this.signaux.length; i++) {
-      this.idEcransModifies.push({ id: n+1, nouvelId: n });
+    for (let i = 0; i < this.signaux.length; i++) {
+      this.signaux[i].id = i+1;
+      this.signaux[i].temps = Date.now();
+    }
+    for (let i = n; i < this.signaux.length; i++) {
+      this.idEcransModifies.push({ id: n, nouvelId: n-1 });
     }
     this.decorEstModifie();
     this.contruitDecor();

@@ -139,7 +139,6 @@ function signal(id) {
   };
 
    fetch("/signal/" + id, init);
-
 }
 
 async function idEcranAChange(id) {
