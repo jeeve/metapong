@@ -11,9 +11,12 @@ class InfosModel {
 
   ajouteEcran() {
     this.nbEcrans++;
-    this.decorEstModifie();
     this.signaux.push({ id: this.nbEcrans, temps: Date.now() });
+    this.decorEstModifie();
+    this.contruitDecor();
+  }
 
+  contruitDecor() {
     this.decor.blocs = [];
     this.decor.balle = { cx: 60, cy: 50, vx: 0.5, vy: 0.4 };
     for (let i = 0; i < this.nbEcrans * 100; i++) {
@@ -25,11 +28,14 @@ class InfosModel {
       this.decor.blocs.push({ x: this.nbEcrans * 100 - 5, y: j });
     }
 
-    let raquette = [];
-    for (let b = 0; b < 4; b++) {
-      raquette.push({ x: 50 + (this.nbEcrans - 1) * 100, y: 50 + b * 5 });
+    this.decor.raquettes = [];
+    for (let r = 0; r < this.nbEcrans; r++) {
+      let raquette = [];
+      for (let b = 0; b < 4; b++) {
+        raquette.push({ x: 50 + r * 100, y: 50 + b * 5 });
+      }
+      this.decor.raquettes.push(raquette);
     }
-    this.decor.raquettes.push(raquette);
   }
 
   decorEstModifie() {
@@ -186,7 +192,7 @@ class InfosModel {
   anyalseSignaux() {
     let t = Date.now();
     for (let i = 0; i < this.signaux.length; i++) {
-      if (t - this.signaux[i].temps > 10000) {
+      if (t - this.signaux[i].temps > 5000) {
         this.enleveEcran();
         return;
       }
@@ -197,20 +203,8 @@ class InfosModel {
     this.nbEcrans--;
     this.decorEstModifie();
     this.signaux.pop();
-
-    this.decor.blocs = [];
-    this.decor.balle = { cx: 60, cy: 50, vx: 0.5, vy: 0.4 };
-    for (let i = 0; i < this.nbEcrans * 100; i++) {
-      this.decor.blocs.push({ x: i, y: 0 });
-      this.decor.blocs.push({ x: i, y: 95 });
-    }
-    for (let j = 0; j < 100; j++) {
-      this.decor.blocs.push({ x: 0, y: j });
-      this.decor.blocs.push({ x: this.nbEcrans * 100 - 5, y: j });
-    }
-
-    this.decor.raquettes.pop();
-  }
+    this.contruitDecor();
+   }
 }
 
 let infos = new InfosModel();
