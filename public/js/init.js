@@ -4,7 +4,7 @@ document.querySelector("#bouton-init").addEventListener("click", init);
 
 register().then((data) => {
   ID = data.id;
-  document.querySelector('#numero-ecran').innerHTML = ID;
+  document.querySelector("#numero-ecran").innerHTML = ID;
   getDecor(ID).then((data) => dessineDecor(data));
   setInterval(avanceTemps, 10);
 });
@@ -12,7 +12,7 @@ register().then((data) => {
 function init() {
   initNbEcrans(1);
   ID = 1;
-  document.querySelector('#numero-ecran').innerHTML = ID;
+  document.querySelector("#numero-ecran").innerHTML = ID;
   getDecor(ID).then((data) => dessineDecor(data));
 }
 
@@ -44,20 +44,21 @@ function raffraichitDecor() {
   });
   signal(ID).then(function (data) {
     ID = data;
+    document.querySelector("#numero-ecran").innerHTML = ID;
   });
 }
 
 setInterval(raffraichitDecor, 5000);
 
-document.addEventListener('keydown', function(event) {
-  if (event.code == 'ArrowDown') {
+document.addEventListener("keydown", function (event) {
+  if (event.code == "ArrowDown") {
     deplaceRaquette(-5);
     metAJourRaquette(ID);
   }
 });
 
-document.addEventListener('keydown', function(event) {
-  if (event.code == 'ArrowUp') {
+document.addEventListener("keydown", function (event) {
+  if (event.code == "ArrowUp") {
     deplaceRaquette(+5);
     metAJourRaquette(ID);
   }

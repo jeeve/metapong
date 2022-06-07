@@ -7,6 +7,7 @@ class InfosModel {
     this.score = { a: 0, b: 0 };
     this.tempoScore = 0;
     this.signaux = [];
+    this.idEcransModifies = [];
   }
 
   ajouteEcran() {
@@ -40,6 +41,7 @@ class InfosModel {
 
   decorEstModifie() {
     this.tagDecorEstModifie = [];
+
     for (let i = 0; i < this.nbEcrans + 1; i++) {
       this.tagDecorEstModifie.push(true);
     }
@@ -193,16 +195,23 @@ class InfosModel {
     let t = Date.now();
     for (let i = 0; i < this.signaux.length; i++) {
       if (t - this.signaux[i].temps > 5000) {
-        this.enleveEcran();
+        this.enleveEcran(i+1);
         return;
       }
     }
   }
 
-  enleveEcran() {
+  enleveEcran(n) {
+    for (let i = 0; i < this.nbEcrans; i++) {
+      this.signaux[i].id = i+1;
+      this.signaux[i].temps = Date.now();
+    }
     this.nbEcrans--;
+    this.signaux.splice(n-1, 1);
     this.decorEstModifie();
-    this.signaux.pop();
+    for (let i = n; i < this.signaux.length; i++) {
+      this.idEcransModifies.push({ id: n, nouvelId: n-1 });
+    }
     this.contruitDecor();
    }
 }
