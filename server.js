@@ -20,7 +20,7 @@ const normalizePort = val => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT ||'5500');
+const port = normalizePort(process.env.PORT ||'8080');
 app.set('port', port);
 
 const errorHandler = error => {
@@ -52,5 +52,5 @@ server.on('listening', () => {
   console.log('Listening on ' + bind);
 });
 
-//server.listen(port);
-server.listen(8080, "0.0.0.0");
+server.listen(port);
+//server.listen(8080, "0.0.0.0");
