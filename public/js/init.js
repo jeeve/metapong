@@ -1,4 +1,5 @@
-let ID = 0;console
+let ID = 0;
+console;
 
 document.querySelector("#bouton-init").addEventListener("click", init);
 
@@ -60,19 +61,33 @@ setInterval(raffraichitDecor, 5000);
 
 document.addEventListener("keydown", function (event) {
   if (event.code == "ArrowDown") {
-    deplaceRaquette(-5);
-    metAJourRaquette(ID);
+    if (positionRaquette() + tailleRaquette()*5 < 95) {
+      deplaceRaquette(-5);
+      metAJourRaquette(ID);
+    }
   }
 });
 
 document.addEventListener("keydown", function (event) {
   if (event.code == "ArrowUp") {
-    deplaceRaquette(+5);
-    metAJourRaquette(ID);
+    if (positionRaquette() > 5) {
+      deplaceRaquette(+5);
+      metAJourRaquette(ID);
+    }
   }
 });
 
 document.addEventListener("wheel", function (event) {
-    deplaceRaquette(-event.deltaY/50);
-    metAJourRaquette(ID);
+  if (event.deltaY > 0) {
+    if (positionRaquette() + tailleRaquette()*5 < 95) {   
+      deplaceRaquette(-event.deltaY / 50);
+      metAJourRaquette(ID);
+    }
+  }
+  if (event.deltaY < 0) {
+    if (positionRaquette() > 5)  {   
+      deplaceRaquette(-event.deltaY / 50);
+      metAJourRaquette(ID);
+    }
+  }
 });

@@ -65,3 +65,19 @@ function afficheScore() {
     document.querySelector('#score').innerHTML = score.a + ' - ' + score.b;
   });
 }
+
+function tailleRaquette() {
+  return document.querySelectorAll('.raquette').length;
+}
+
+function positionRaquette() {
+  let ymin = Infinity;
+  let blocsRaquette = document.querySelectorAll('.raquette');
+  blocsRaquette.forEach(function (bloc) {
+    let y = Number(bloc.getAttribute('y').replace('%', ''));
+    if (y < ymin) {
+      ymin = y;
+    }
+  });  
+  return ymin;
+}
