@@ -71,3 +71,8 @@ document.addEventListener("keydown", function (event) {
     metAJourRaquette(ID);
   }
 });
+
+document.addEventListener("wheel", function (event) {
+    deplaceRaquette(-event.deltaY/50);
+    metAJourRaquette(ID);
+});
