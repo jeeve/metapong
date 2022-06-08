@@ -207,6 +207,10 @@ class InfosModel {
       this.idEcransModifies.push({ id: i, nouvelId: i-1 });
     }
     this.nbEcrans--;
+    this.signaux = [];
+    for (let i = 0; i < this.nbEcrans; i++) {
+      this.signaux.push({ id: i+1, temps: Date.now() })
+    }
     this.decorEstModifie();
     this.contruitDecor();
    }

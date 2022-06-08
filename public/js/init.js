@@ -48,6 +48,7 @@ function raffraichitDecor() {
       console.log(ID);
       ID = data.id;
       document.querySelector("#numero-ecran").innerHTML = ID;
+      getDecor(ID).then((data) => dessineDecor(data));
     }
   });
 }

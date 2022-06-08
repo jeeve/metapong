@@ -76,12 +76,11 @@ app.get("/idecranachange/:numeroEcran", (req, res) => {
   let numeroEcran = Number(req.params.numeroEcran);
   let nouvelIdEcran = numeroEcran;
   let aChange = false;
-  let i = infos.idEcransModifies.findIndex((elt) => elt.id == numeroEcran);
+  let i = infos.idEcransModifies.length-1;
   console.log(i);
   if (i != -1) {
     nouvelIdEcran = infos.idEcransModifies[i].nouvelId;
-    infos.idEcransModifies.splice(i, 1);
-    infos.signaux.splice(i, 1);
+    infos.idEcransModifies.pop();
   }
   if (nouvelIdEcran != numeroEcran) {
     aChange = true;
