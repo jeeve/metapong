@@ -194,6 +194,7 @@ class InfosModel {
     let t = Date.now();
     for (let i = 0; i < this.signaux.length; i++) {
       if (t - this.signaux[i].temps > 5000) {
+        console.log('enleve ' + (i+1));
         this.enleveEcran(i+1);
         return;
       }
@@ -202,15 +203,10 @@ class InfosModel {
 
   enleveEcran(n) {
     this.idEcransModifies = [];
-    for (let i = n+1; i < this.nbEcrans+1; i++) {
-      this.idEcransModifies.push({ id: n+1, nouvelId: n });
+    for (let i = n; i < this.nbEcrans+1; i++) {
+      this.idEcransModifies.push({ id: i, nouvelId: i-1 });
     }
     this.nbEcrans--;
-    this.signaux.splice(n-1, 1);
-    for (let i = 0; i < this.signaux.length; i++) {
-      this.signaux[i].id = i+1;
-      this.signaux[i].temps = Date.now();
-    }
     this.decorEstModifie();
     this.contruitDecor();
    }
