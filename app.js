@@ -81,6 +81,10 @@ app.get("/idecranachange/:numeroEcran", (req, res) => {
   if (i != -1) {
     nouvelIdEcran = infos.idEcransModifies[i].nouvelId;
     infos.idEcransModifies.pop();
+    this.signaux = [];
+    for (let i = 0; i < this.nbEcrans; i++) {
+      this.signaux.push({ id: i+1, temps: Date.now() })
+    }
   }
   if (nouvelIdEcran != numeroEcran) {
     aChange = true;
