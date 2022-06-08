@@ -194,8 +194,8 @@ class InfosModel {
     let t = Date.now();
     for (let i = 0; i < this.signaux.length; i++) {
       if (t - this.signaux[i].temps > 5000) {
-        console.log('enleve ' + (i+1));
-        this.enleveEcran(i+1);
+        console.log('enleve ' + this.signaux[i].id);
+        this.enleveEcran(this.signaux[i].id);
         this.signaux = [];
         for (let i = 0; i < this.nbEcrans; i++) {
           this.signaux.push({ id: i+1, temps: Date.now() })
