@@ -46,7 +46,8 @@ function raffraichitDecor() {
   idEcranAChange(ID).then((data) => {
     if (data.aChange) {
       console.log(ID);
-      ID = data.nouvelIdEcran;
+      ID = data.id;
+      document.querySelector("#numero-ecran").innerHTML = ID;
     }
   });
 }

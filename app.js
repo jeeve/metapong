@@ -77,6 +77,7 @@ app.get("/idecranachange/:numeroEcran", (req, res) => {
   let nouvelIdEcran = numeroEcran;
   let aChange = false;
   let i = infos.idEcransModifies.findIndex((elt) => elt.id == numeroEcran);
+  console.log(i + ' / ' + numeroEcran + ' / ' + nouvelIdEcran);
   if (i != -1) {
     nouvelIdEcran = infos.idEcransModifies[i].nouvelId;
     infos.idEcransModifies.splice(i, 1);
@@ -85,7 +86,7 @@ app.get("/idecranachange/:numeroEcran", (req, res) => {
     aChange = true;
   }
   res.setHeader("Content-Type", "application/json");
-  //console.log('id a change : ' + aChange +  ' - ' + nouvelIdEcran );
+  console.log('id a change : ' + aChange +  ' - ' + nouvelIdEcran );
   res.end(JSON.stringify({ aChange: aChange, id: nouvelIdEcran }));
 });
 

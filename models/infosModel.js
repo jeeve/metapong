@@ -201,15 +201,15 @@ class InfosModel {
   }
 
   enleveEcran(n) {
-    this.nbEcrans--;
     this.idEcransModifies = [];
+    for (let i = n+1; i < this.nbEcrans+1; i++) {
+      this.idEcransModifies.push({ id: n+1, nouvelId: n });
+    }
+    this.nbEcrans--;
     this.signaux.splice(n-1, 1);
     for (let i = 0; i < this.signaux.length; i++) {
       this.signaux[i].id = i+1;
       this.signaux[i].temps = Date.now();
-    }
-    for (let i = n; i < this.signaux.length; i++) {
-      this.idEcransModifies.push({ id: n, nouvelId: n-1 });
     }
     this.decorEstModifie();
     this.contruitDecor();
