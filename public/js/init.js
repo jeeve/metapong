@@ -13,6 +13,8 @@ function init() {
   initNbEcrans(1);
   ID = 1;
   document.querySelector("#numero-ecran").innerHTML = ID;
+  signal(ID);
+  afficheScore();
   getDecor(ID).then((data) => dessineDecor(data));
 }
 
