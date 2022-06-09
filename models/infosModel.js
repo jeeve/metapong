@@ -11,6 +11,7 @@ class InfosModel {
 
   ajouteEcran() {
     this.nbEcrans++;
+    console.log('ajout écran : ' + this.nbEcrans);
     this.signaux.push({ id: this.nbEcrans, temps: Date.now() });
     this.decorEstModifie();
     this.contruitDecor();
