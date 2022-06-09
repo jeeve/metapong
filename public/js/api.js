@@ -130,7 +130,9 @@ async function getScore() {
   return score;
 }
 
-function signal(id) {
+async function signal(id) {
+
+  let nbEcrans = 0;
 
   const init = {
     method: "GET",
@@ -138,7 +140,10 @@ function signal(id) {
     credentials: "same-origin",
   };
 
-   fetch("/signal/" + id, init);
+   await fetch("/signal/" + id, init).then(response => response.json())
+   .then(response => nbEcrans = response.nbEcrans );
+
+   return nbEcrans;
 }
 
 async function idEcranAChange(id) {

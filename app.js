@@ -73,7 +73,7 @@ app.get("/signal/:numeroEcran", (req, res) => {
   }
 
   res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify({ nbEcrans: infos.nbEcrans }));
+  res.end(JSON.stringify({ nbEcrans: infos.getNbEcrans() }));
 });
 
 app.get("/idecranachange/:numeroEcran", (req, res) => {

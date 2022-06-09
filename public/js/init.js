@@ -6,6 +6,9 @@ document.querySelector("#bouton-init").addEventListener("click", init);
 register().then((data) => {
   ID = data.id;
   document.querySelector("#numero-ecran").innerHTML = ID;
+  signal(ID).then((data) => {
+    document.querySelector("#nombre-ecrans").innerHTML = ' / ' + data;
+  });
   getDecor(ID).then((data) => dessineDecor(data));
   setInterval(avanceTemps, 10);
 });
@@ -14,7 +17,9 @@ function init() {
   initNbEcrans(1);
   ID = 1;
   document.querySelector("#numero-ecran").innerHTML = ID;
-  signal(ID);
+  signal(ID).then((data) => {
+    document.querySelector("#nombre-ecrans").innerHTML = ' / ' + data;
+  });
   afficheScore();
   getDecor(ID).then((data) => dessineDecor(data));
 }
@@ -45,13 +50,17 @@ function raffraichitDecor() {
       getDecor(ID).then((data) => dessineDecor(data));
     }
   });
-  signal(ID);
+  signal(ID).then((data) => {
+    document.querySelector("#nombre-ecrans").innerHTML = ' / ' + data;
+  });
   idEcranAChange(ID).then((data) => {
     if (data.aChange) {
       console.log(ID);
       ID = data.id;
       document.querySelector("#numero-ecran").innerHTML = ID;
-      signal(ID);
+      signal(ID).then((data) => {
+        document.querySelector("#nombre-ecrans").innerHTML = ' / ' + data;
+      });
       getDecor(ID).then((data) => dessineDecor(data));
     }
   });
