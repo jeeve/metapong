@@ -212,8 +212,17 @@ class InfosModel {
     }
     console.log(this.idEcransModifies);
     this.nbEcrans--;
-    this.decorEstModifie();
-    this.contruitDecor();
+    if (this.nbEcrans < 1) {
+      this.decor = { raquettes: [] };
+      this.tagDecorEstModifie = [false];
+      this.score = { a: 0, b: 0 };
+      this.tempoScore = 0;
+      this.signaux = [];
+      this.idEcransModifies = [];
+    } else {
+      this.decorEstModifie();
+      this.contruitDecor();
+    }
    }
 }
 
