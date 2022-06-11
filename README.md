@@ -5,6 +5,6 @@ https://nodejs.org/
 
 Download Git repository
 
-Run `code`node server.js
+Run `node server.js`
 
 Navigate to http://localhost:8080
