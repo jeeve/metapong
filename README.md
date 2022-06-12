@@ -7,7 +7,11 @@ https://nodejs.org/
 
 Download Git repository
 
-Run `node server.js`
+At root direcrectory, enter :
+
+`npm install`
+
+`node server.js`
 
 Navigate to http://localhost:8080
 
