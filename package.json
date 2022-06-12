@@ -1,22 +1,22 @@
 {
-  "name": "multipong",
+  "name": "metapong",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon serveur.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jeeve/multipong.git"
+    "url": "git+https://github.com/jeeve/metapong.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jeeve/multipong/issues"
+    "url": "https://github.com/jeeve/metapong/issues"
   },
-  "homepage": "https://github.com/jeeve/multipong#readme",
+  "homepage": "https://github.com/jeeve/metapong#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
