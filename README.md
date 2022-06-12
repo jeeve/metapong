@@ -7,7 +7,7 @@ https://nodejs.org/
 
 Download Metapong git repository
 
-In root direcrectory, enter :
+In root directory, enter :
 
 `npm install`
 
