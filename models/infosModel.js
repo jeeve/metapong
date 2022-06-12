@@ -7,6 +7,7 @@ class InfosModel {
     this.tempoScore = 0;
     this.signaux = [];
     this.idEcransModifies = [];
+    this.alerte = false;
   }
 
   ajouteEcran() {
@@ -92,6 +93,7 @@ class InfosModel {
 
   balle(numeroEcran) {
     let b = {
+      alerte: this.alerte,
       cx: this.decor.balle.cx,
       cy: this.decor.balle.cy,
       vx: this.decor.balle.vx,
@@ -220,6 +222,7 @@ class InfosModel {
       this.tempoScore = 0;
       this.signaux = [];
       this.idEcransModifies = [];
+      this.alerte = false;
     } else {
       this.decorEstModifie();
       this.contruitDecor();

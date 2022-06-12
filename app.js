@@ -97,4 +97,9 @@ app.get("/idecranachange/:numeroEcran", (req, res) => {
   res.end(JSON.stringify({ aChange: aChange, id: nouvelIdEcran }));
 });
 
+app.get("/alerte/", (req, res) => {
+  infos.alerte = ! infos.alerte;
+  res.end();
+});
+
 module.exports = app;

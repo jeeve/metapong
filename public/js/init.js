@@ -1,5 +1,5 @@
 let ID = 0;
-console;
+let alerte = false;
 
 document.querySelector("#bouton-init").addEventListener("click", init);
 
@@ -25,7 +25,16 @@ function init() {
 }
 
 function avanceTemps() {
-  getBalle(ID).then((data) => deplaceBalle(data));
+  getBalle(ID).then((data) => {
+    deplaceBalle(data);
+    if (!alerte && data.alerte) {
+      document.querySelector('body').style.visibility = 'hidden';
+    }
+    if (alerte && !data.alerte) {
+      document.querySelector('body').style.visibility = 'visible';
+    }
+    alerte = data.alerte;
+  });
   afficheScore();
 }
 
@@ -75,16 +84,17 @@ document.addEventListener("keydown", function (event) {
       metAJourRaquette(ID);
     }
   }
-});
-
-document.addEventListener("keydown", function (event) {
   if (event.code == "ArrowUp") {
     if (positionRaquette() > 5) {
       deplaceRaquette(+5);
       metAJourRaquette(ID);
     }
   }
+  if (event.code == "Space") {
+    Alerte();
+  }
 });
+
 
 document.addEventListener("wheel", function (event) {
   if (event.deltaY > 0) {

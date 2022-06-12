@@ -162,4 +162,15 @@ async function idEcranAChange(id) {
   return etat;
 }
 
+function Alerte() {
+
+  const init = {
+    method: "GET",
+    mode: "cors",
+    credentials: "same-origin",
+  };
+
+  fetch("/alerte/", init);
+}
+
 
