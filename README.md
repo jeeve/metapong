@@ -1,5 +1,7 @@
 # metapong
 
+A small multiplayer Pong game running on a Nodejs server. The game space grows as users connect.
+
 Install Nodejs
 https://nodejs.org/
 
