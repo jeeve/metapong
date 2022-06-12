@@ -13,8 +13,8 @@ In root direcrectory, enter :
 
 `node server.js`
 
-Navigate to http://localhost:8080.
-Use the up/down arrows or the mouse wheel to move the paddle.
-The space key instantly clears/displays all screens. 
+Navigate to http://localhost:8080  
+Use the up/down arrows or the mouse wheel to move the paddle  
+The space key instantly clears/displays all screens   
 
 ![metapong](https://greduvent.herokuapp.com/informatique/images/metapong.gif)
