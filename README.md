@@ -5,9 +5,9 @@ A small multiplayer Pong game running on a Nodejs server. The game space grows a
 Install Nodejs
 https://nodejs.org/
 
-Download Git repository
+Download Metapong git repository
 
-At root direcrectory, enter :
+In root direcrectory, enter :
 
 `npm install`
 
