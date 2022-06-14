@@ -12,7 +12,7 @@ class InfosModel {
 
   ajouteEcran() {
     this.nbEcrans++;
-    console.log('ajout écran : ' + this.nbEcrans);
+    console.log(Date() + ' - ajoute écran ' + this.nbEcrans + ' / ' + this.nbEcrans);
     this.signaux.push({ id: this.nbEcrans, temps: Date.now() });
     this.decorEstModifie();
     this.contruitDecor();
@@ -197,7 +197,6 @@ class InfosModel {
     let t = Date.now();
     for (let i = 0; i < this.signaux.length; i++) {
       if (t - this.signaux[i].temps > 6000) {
-        console.log('enleve ' + this.signaux[i].id);
         this.enleveEcran(this.signaux[i].id);
         this.signaux = [];
         for (let i = 0; i < this.nbEcrans; i++) {
@@ -213,7 +212,7 @@ class InfosModel {
     for (let i = n+1; i < this.nbEcrans+1; i++) {
       this.idEcransModifies.push({ id: i, nouvelId: i-1 });
     }
-    console.log(this.idEcransModifies);
+    console.log(Date() + ' - enlève écran ' + n + ' / ' + this.nbEcrans);
     this.nbEcrans--;
     if (this.nbEcrans < 1) {
       this.decor = { raquettes: [] };

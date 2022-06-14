@@ -83,7 +83,7 @@ app.get("/idecranachange/:numeroEcran", (req, res) => {
   let i = infos.idEcransModifies.findIndex(elt => elt.id == numeroEcran);
   if (i != -1) {
     nouvelIdEcran = infos.idEcransModifies[i].nouvelId;
-    console.log('id a change : ' + aChange + ' / ' + numeroEcran + ' - ' + nouvelIdEcran );
+    //console.log('id a change : ' + aChange + ' / ' + numeroEcran + ' - ' + nouvelIdEcran );
     infos.idEcransModifies.splice(i, 1);
     this.signaux = [];
     for (let i = 0; i < this.nbEcrans; i++) {
