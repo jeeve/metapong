@@ -40,44 +40,45 @@ function creeBalle(balle) {
 }
 
 function deplaceBalle(balle) {
-  let cercle = document.getElementsByTagName("circle")[0];
+  if (balle != undefined) {
+    let cercle = document.getElementsByTagName("circle")[0];
 
-  cercle.setAttribute("cx", balle.cx + "%");
-  cercle.setAttribute("cy", balle.cy + "%");
+    cercle.setAttribute("cx", balle.cx + "%");
+    cercle.setAttribute("cy", balle.cy + "%");
+  }
 }
 
-
 function deplaceRaquette(dy) {
-  let blocsRaquette = document.querySelectorAll('.raquette');
+  let blocsRaquette = document.querySelectorAll(".raquette");
   blocsRaquette.forEach(function (bloc) {
-    let y = Number(bloc.getAttribute('y').replace('%', ''));
-    bloc.setAttribute("y", y - dy + "%");    
+    let y = Number(bloc.getAttribute("y").replace("%", ""));
+    bloc.setAttribute("y", y - dy + "%");
   });
 }
 
 function efface() {
-  let svg = document.getElementsByTagName("svg")[0];  
-  svg.innerHTML = '';
+  let svg = document.getElementsByTagName("svg")[0];
+  svg.innerHTML = "";
 }
 
 function afficheScore() {
   getScore().then(function (score) {
-    document.querySelector('#score').innerHTML = score.a + ' - ' + score.b;
+    document.querySelector("#score").innerHTML = score.a + " - " + score.b;
   });
 }
 
 function tailleRaquette() {
-  return document.querySelectorAll('.raquette').length;
+  return document.querySelectorAll(".raquette").length;
 }
 
 function positionRaquette() {
   let ymin = Infinity;
-  let blocsRaquette = document.querySelectorAll('.raquette');
+  let blocsRaquette = document.querySelectorAll(".raquette");
   blocsRaquette.forEach(function (bloc) {
-    let y = Number(bloc.getAttribute('y').replace('%', ''));
+    let y = Number(bloc.getAttribute("y").replace("%", ""));
     if (y < ymin) {
       ymin = y;
     }
-  });  
+  });
   return ymin;
 }

@@ -7,7 +7,7 @@ register().then((data) => {
   ID = data.id;
   document.querySelector("#numero-ecran").innerHTML = ID;
   signal(ID).then((data) => {
-    document.querySelector("#nombre-ecrans").innerHTML = ' / ' + data;
+    document.querySelector("#nombre-ecrans").innerHTML = " / " + data;
   });
   getDecor(ID).then((data) => dessineDecor(data));
   setInterval(avanceTemps, 10);
@@ -18,7 +18,7 @@ function init() {
   ID = 1;
   document.querySelector("#numero-ecran").innerHTML = ID;
   signal(ID).then((data) => {
-    document.querySelector("#nombre-ecrans").innerHTML = ' / ' + data;
+    document.querySelector("#nombre-ecrans").innerHTML = " / " + data;
   });
   afficheScore();
   getDecor(ID).then((data) => dessineDecor(data));
@@ -28,10 +28,10 @@ function avanceTemps() {
   getBalle(ID).then((data) => {
     deplaceBalle(data);
     if (!alerte && data.alerte) {
-      document.querySelector('body').style.visibility = 'hidden';
+      document.querySelector("body").style.visibility = "hidden";
     }
     if (alerte && !data.alerte) {
-      document.querySelector('body').style.visibility = 'visible';
+      document.querySelector("body").style.visibility = "visible";
     }
     alerte = data.alerte;
   });
@@ -39,12 +39,14 @@ function avanceTemps() {
 }
 
 function dessineDecor(decor) {
-  efface();
-  for (let i = 0; i < decor.blocs.length; i++) {
-    creeBloc(decor.blocs[i].x, decor.blocs[i].y);
+  if (decor != undefined) {
+    efface();
+    for (let i = 0; i < decor.blocs.length; i++) {
+      creeBloc(decor.blocs[i].x, decor.blocs[i].y);
+    }
+    creeBalle(decor.balle);
+    creeRaquette(decor.raquette);
   }
-  creeBalle(decor.balle);
-  creeRaquette(decor.raquette);
 }
 
 function creeRaquette(raquette) {
@@ -60,7 +62,7 @@ function raffraichitDecor() {
     }
   });
   signal(ID).then((data) => {
-    document.querySelector("#nombre-ecrans").innerHTML = ' / ' + data;
+    document.querySelector("#nombre-ecrans").innerHTML = " / " + data;
   });
   idEcranAChange(ID).then((data) => {
     if (data.aChange) {
@@ -68,7 +70,7 @@ function raffraichitDecor() {
       ID = data.id;
       document.querySelector("#numero-ecran").innerHTML = ID;
       signal(ID).then((data) => {
-        document.querySelector("#nombre-ecrans").innerHTML = ' / ' + data;
+        document.querySelector("#nombre-ecrans").innerHTML = " / " + data;
       });
       getDecor(ID).then((data) => dessineDecor(data));
     }
@@ -79,7 +81,7 @@ setInterval(raffraichitDecor, 5000);
 
 document.addEventListener("keydown", function (event) {
   if (event.code == "ArrowDown") {
-    if (positionRaquette() + tailleRaquette()*5 < 95) {
+    if (positionRaquette() + tailleRaquette() * 5 < 95) {
       deplaceRaquette(-5);
       metAJourRaquette(ID);
     }
@@ -95,16 +97,15 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-
 document.addEventListener("wheel", function (event) {
   if (event.deltaY > 0) {
-    if (positionRaquette() + tailleRaquette()*5 < 95) {   
+    if (positionRaquette() + tailleRaquette() * 5 < 95) {
       deplaceRaquette(-event.deltaY / 50);
       metAJourRaquette(ID);
     }
   }
   if (event.deltaY < 0) {
-    if (positionRaquette() > 5)  {   
+    if (positionRaquette() > 5) {
       deplaceRaquette(-event.deltaY / 50);
       metAJourRaquette(ID);
     }

@@ -141,7 +141,7 @@ async function signal(id) {
   };
 
    await fetch("/signal/" + id, init).then(response => response.json())
-   .then(response => nbEcrans = response.nbEcrans );
+   .then(response => nbEcrans = response.nbEcrans);
 
    return nbEcrans;
 }

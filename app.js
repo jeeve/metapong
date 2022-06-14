@@ -26,7 +26,7 @@ app.get("/init/:nbEcrans", (req, res) => {
 app.get("/register/", (req, res) => {
   infos.ajouteEcran();
   res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify({ id: infos.getNbEcrans() }));
+  res.end(JSON.stringify({ id: infos.nbEcrans }));
 });
 
 app.post("/render/", (req, res) => {
@@ -66,28 +66,32 @@ app.get("/score/", (req, res) => {
 });
 
 app.get("/signal/:numeroEcran", (req, res) => {
-  let numeroEcran = Number(req.params.numeroEcran);
-  let idEcran = numeroEcran;
-  if (numeroEcran <= infos.signaux.length) {
-    infos.signaux[idEcran-1].temps = Date.now();
-  }
+  if (infos.nbEcrans > 0) {
+    let numeroEcran = Number(req.params.numeroEcran);
+    let idEcran = numeroEcran;
+    if (numeroEcran <= infos.signaux.length) {
+      infos.signaux[idEcran - 1].temps = Date.now();
+    }
 
-  res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify({ nbEcrans: infos.getNbEcrans() }));
+    res.setHeader("Content-Type", "application/json");
+    res.end(JSON.stringify({ nbEcrans: infos.nbEcrans }));
+  } else {
+    res.end(JSON.stringify({ nbEcrans: 0 }));
+  }
 });
 
 app.get("/idecranachange/:numeroEcran", (req, res) => {
   let numeroEcran = Number(req.params.numeroEcran);
   let nouvelIdEcran = numeroEcran;
   let aChange = false;
-  let i = infos.idEcransModifies.findIndex(elt => elt.id == numeroEcran);
+  let i = infos.idEcransModifies.findIndex((elt) => elt.id == numeroEcran);
   if (i != -1) {
     nouvelIdEcran = infos.idEcransModifies[i].nouvelId;
     //console.log('id a change : ' + aChange + ' / ' + numeroEcran + ' - ' + nouvelIdEcran );
     infos.idEcransModifies.splice(i, 1);
-    this.signaux = [];
-    for (let i = 0; i < this.nbEcrans; i++) {
-      this.signaux.push({ id: i+1, temps: Date.now() })
+    infos.signaux = [];
+    for (let i = 0; i < infos.nbEcrans; i++) {
+      infos.signaux.push({ id: i + 1, temps: Date.now() });
     }
   }
   if (nouvelIdEcran != numeroEcran) {
@@ -98,7 +102,7 @@ app.get("/idecranachange/:numeroEcran", (req, res) => {
 });
 
 app.get("/alerte/", (req, res) => {
-  infos.alerte = ! infos.alerte;
+  infos.alerte = !infos.alerte;
   res.end();
 });
 

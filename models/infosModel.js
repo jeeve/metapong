@@ -12,7 +12,9 @@ class InfosModel {
 
   ajouteEcran() {
     this.nbEcrans++;
-    console.log(Date() + ' - ajoute écran ' + this.nbEcrans + ' / ' + this.nbEcrans);
+    console.log(
+      Date() + " - ajoute écran " + this.nbEcrans + " / " + this.nbEcrans
+    );
     this.signaux.push({ id: this.nbEcrans, temps: Date.now() });
     this.decorEstModifie();
     this.contruitDecor();
@@ -48,41 +50,41 @@ class InfosModel {
     }
   }
 
-  getNbEcrans() {
-    return this.nbEcrans;
-  }
-
   render(numeroEcran) {
-    let decor = {
-      blocs: [],
-      balle: {
-        cx: this.decor.balle.cx,
-        cy: this.decor.balle.cy,
-        vx: this.decor.balle.vx,
-        vy: this.decor.balle.vy,
-      },
-      raquette: [],
-    };
+    if (this.nbEcrans > 0) {
+      let decor = {
+        blocs: [],
+        balle: {
+          cx: this.decor.balle.cx,
+          cy: this.decor.balle.cy,
+          vx: this.decor.balle.vx,
+          vy: this.decor.balle.vy,
+        },
+        raquette: [],
+      };
 
-    this.decor.raquettes[numeroEcran - 1].forEach(function (blocRaquette) {
-      decor.raquette.push({
-        x: blocRaquette.x - (numeroEcran - 1) * 100,
-        y: blocRaquette.y,
+      this.decor.raquettes[numeroEcran - 1].forEach(function (blocRaquette) {
+        decor.raquette.push({
+          x: blocRaquette.x - (numeroEcran - 1) * 100,
+          y: blocRaquette.y,
+        });
       });
-    });
 
-    decor.balle.cx = this.decor.balle.cx - (numeroEcran - 1) * 100;
+      decor.balle.cx = this.decor.balle.cx - (numeroEcran - 1) * 100;
 
-    for (let i = 0; i < this.decor.blocs.length; i++) {
-      if (this.blocEstDansDecor(this.decor.blocs[i], numeroEcran)) {
-        let b = { x: this.decor.blocs[i].x, y: this.decor.blocs[i].y };
-        decor.blocs.push(b);
-        decor.blocs[decor.blocs.length - 1].x =
-          this.decor.blocs[i].x - (numeroEcran - 1) * 100;
+      for (let i = 0; i < this.decor.blocs.length; i++) {
+        if (this.blocEstDansDecor(this.decor.blocs[i], numeroEcran)) {
+          let b = { x: this.decor.blocs[i].x, y: this.decor.blocs[i].y };
+          decor.blocs.push(b);
+          decor.blocs[decor.blocs.length - 1].x =
+            this.decor.blocs[i].x - (numeroEcran - 1) * 100;
+        }
       }
-    }
 
-    return decor;
+      return decor;
+    } else {
+      return {};
+    }
   }
 
   blocEstDansDecor(bloc, numeroEcran) {
@@ -92,17 +94,21 @@ class InfosModel {
   }
 
   balle(numeroEcran) {
-    let b = {
-      alerte: this.alerte,
-      cx: this.decor.balle.cx,
-      cy: this.decor.balle.cy,
-      vx: this.decor.balle.vx,
-      vy: this.decor.balle.vy,
-    };
+    if (this.nbEcrans > 0) {
+      let b = {
+        alerte: this.alerte,
+        cx: this.decor.balle.cx,
+        cy: this.decor.balle.cy,
+        vx: this.decor.balle.vx,
+        vy: this.decor.balle.vy,
+      };
 
-    b.cx = this.decor.balle.cx - (numeroEcran - 1) * 100;
+      b.cx = this.decor.balle.cx - (numeroEcran - 1) * 100;
 
-    return b;
+      return b;
+    } else {
+      return {};
+    }
   }
 
   blocEn(x, y) {
@@ -134,7 +140,7 @@ class InfosModel {
   }
 
   avanceTemps() {
-    if (this.nbEcrans == 0) return;
+    if (this.nbEcrans < 1) return;
 
     this.testAPerdu();
 
@@ -194,25 +200,27 @@ class InfosModel {
   }
 
   anyalseSignaux() {
-    let t = Date.now();
-    for (let i = 0; i < this.signaux.length; i++) {
-      if (t - this.signaux[i].temps > 6000) {
-        this.enleveEcran(this.signaux[i].id);
-        this.signaux = [];
-        for (let i = 0; i < this.nbEcrans; i++) {
-          this.signaux.push({ id: i+1, temps: Date.now() })
+    if (this.nbEcrans > 0) {
+      let t = Date.now();
+      for (let i = 0; i < this.signaux.length; i++) {
+        if (t - this.signaux[i].temps > 6000) {
+          this.enleveEcran(this.signaux[i].id);
+          this.signaux = [];
+          for (let i = 0; i < this.nbEcrans; i++) {
+            this.signaux.push({ id: i + 1, temps: Date.now() });
+          }
+          return;
         }
-        return;
       }
     }
   }
 
   enleveEcran(n) {
     this.idEcransModifies = [];
-    for (let i = n+1; i < this.nbEcrans+1; i++) {
-      this.idEcransModifies.push({ id: i, nouvelId: i-1 });
+    for (let i = n + 1; i < this.nbEcrans + 1; i++) {
+      this.idEcransModifies.push({ id: i, nouvelId: i - 1 });
     }
-    console.log(Date() + ' - enlève écran ' + n + ' / ' + this.nbEcrans);
+    console.log(Date() + " - enlève écran " + n + " / " + this.nbEcrans);
     this.nbEcrans--;
     if (this.nbEcrans < 1) {
       this.decor = { raquettes: [] };
@@ -226,7 +234,7 @@ class InfosModel {
       this.decorEstModifie();
       this.contruitDecor();
     }
-   }
+  }
 }
 
 let infos = new InfosModel();
