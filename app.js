@@ -13,6 +13,7 @@ const { infos } = require("./models/infosModel");
 
 app.get("/init/:nbEcrans", (req, res) => {
   infos.nbEcrans = Number(req.params.nbEcrans) - 1;
+  console.log(Date() + " - Init");
   infos.tagDecorEstModifie = [false];
   infos.score = { a: 0, b: 0 };
   infos.tempoScore = 0;
