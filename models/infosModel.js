@@ -1,3 +1,6 @@
+const vx0 = 0.5;
+const vy0 = 0.4;
+
 class InfosModel {
   constructor() {
     this.nbEcrans = 0;
@@ -22,7 +25,7 @@ class InfosModel {
 
   contruitDecor() {
     this.decor.blocs = [];
-    this.decor.balle = { cx: 60, cy: 50, vx: 0.5, vy: 0.4 };
+    this.decor.balle = { cx: 60, cy: 50, vx: vx0, vy: vy0 };
     for (let i = 0; i < this.nbEcrans * 100; i++) {
       this.decor.blocs.push({ x: i, y: 0 });
       this.decor.blocs.push({ x: i, y: 95 });
@@ -150,10 +153,26 @@ class InfosModel {
     let x1 = this.decor.balle.cx;
     let y1 = this.decor.balle.cy;
 
-    if (this.blocEn(x1 + 1 / 2 + vx, y1 + 1 / 2)) {
+    let vxt = vx;
+    let vyt = vy;
+
+    if (vxt > vx0) {
+      vxt = vx0;
+    }
+    if (vxt < -vx0) {
+      vxt = -vx0;
+    }
+    if (vyt > vy0) {
+      vyt = vy0;
+    }
+    if (vyt < -vy0) {
+      vyt = -vy0;
+    }    
+
+    if (this.blocEn(x1 + 1 / 2 + vxt, y1 + 1 / 2)) {
       vx = -vx;
     } else {
-      if (this.blocEn(x1 + 1 / 2, y1 + 1 / 2 + vy)) {
+      if (this.blocEn(x1 + 1 / 2, y1 + 1 / 2 + vyt)) {
         vy = -vy;
       }
     }
