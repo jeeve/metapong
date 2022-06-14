@@ -92,6 +92,12 @@ document.addEventListener("keydown", function (event) {
       metAJourRaquette(ID);
     }
   }
+  if (event.code == "NumpadAdd") {
+    changeVitesse(1.2);
+  }
+  if (event.code == "NumpadSubtract") {
+    changeVitesse(0.8);
+  }
   if (event.code == "Space") {
     Alerte();
   }

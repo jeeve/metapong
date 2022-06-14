@@ -173,4 +173,21 @@ function Alerte() {
   fetch("/alerte/", init);
 }
 
+function changeVitesse(dv) {
+
+  const init = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: ID,
+      dv: dv
+    }),
+    mode: "cors",
+    credentials: "same-origin",
+  };
+
+  fetch("/vitesse/", init);
+}
 

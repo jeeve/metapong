@@ -87,7 +87,6 @@ app.get("/idecranachange/:numeroEcran", (req, res) => {
   let i = infos.idEcransModifies.findIndex((elt) => elt.id == numeroEcran);
   if (i != -1) {
     nouvelIdEcran = infos.idEcransModifies[i].nouvelId;
-    //console.log('id a change : ' + aChange + ' / ' + numeroEcran + ' - ' + nouvelIdEcran );
     infos.idEcransModifies.splice(i, 1);
     infos.signaux = [];
     for (let i = 0; i < infos.nbEcrans; i++) {
@@ -103,6 +102,17 @@ app.get("/idecranachange/:numeroEcran", (req, res) => {
 
 app.get("/alerte/", (req, res) => {
   infos.alerte = !infos.alerte;
+  res.end();
+});
+
+app.post("/vitesse/", (req, res) => {
+  if (infos.nbEcrans > 0) {
+    let id = req.body.id;
+    let dv = req.body.dv;
+
+    infos.decor.balle.vx = infos.decor.balle.vx * dv;
+    infos.decor.balle.vy = infos.decor.balle.vy * dv;
+  }
   res.end();
 });
 
