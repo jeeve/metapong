@@ -71,6 +71,20 @@ async function getSprite(id) {
   return sprite;
 }
 
+function nouvelleBrique() {
+ 
+  const init = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    mode: "cors",
+    credentials: "same-origin",
+  };
+
+  fetch("/nouvellebrique/", init)
+}
+
 function metAJourRaquette(id) {
   let raquette = []; 
   let blocsRaquette = document.querySelectorAll('.raquette');

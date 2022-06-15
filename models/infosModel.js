@@ -13,6 +13,7 @@ class InfosModel {
     this.signaux = [];
     this.idEcransModifies = [];
     this.alerte = false;
+    this.nouvellesBriques = [];
   }
 
   ajouteEcran() {
@@ -110,6 +111,19 @@ class InfosModel {
       b.cx = this.decor.balle.cx - (numeroEcran - 1) * 100;
 
       return b;
+    } else {
+      return {};
+    }
+  }
+
+  getBrique() {
+    if (this.nbEcrans > 0) {
+      let b = { x: Math.floor(Math.random() * 100 * this.nbEcrans), y: Math.floor(Math.random() * 100) };
+      if (!this.blocEn(b.x, b.y)) {
+        this.decor.blocs.push({ x: b.x, y: b.y });
+        return b;
+      }
+      return {};
     } else {
       return {};
     }
@@ -278,6 +292,7 @@ class InfosModel {
       this.signaux = [];
       this.idEcransModifies = [];
       this.alerte = false;
+      this.nouvellesBriques = [];
     } else {
       this.decorEstModifie();
       this.contruitDecor();

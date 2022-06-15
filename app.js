@@ -36,9 +36,34 @@ app.post("/render/", (req, res) => {
 });
 
 app.post("/sprite/", (req, res) => {
-  let sprite = { balle: infos.getBalle(req.body.id), alerte: infos.alerte };
+
+  let id = req.body.id;
+  let b = [];
+  let nouvellesBriques = [];
+  infos.nouvellesBriques.forEach((brique) => {
+    if (infos.blocEstDansDecor(brique, id)) {
+      b.push({ x: brique.x - (id - 1) * 100, y: brique.y });   
+    } else {
+      nouvellesBriques.push({ x: brique.x, y: brique.y });   
+    }
+  });
+  infos.nouvellesBriques = [];
+  nouvellesBriques.forEach(brique => {
+    infos.nouvellesBriques.push({ x: brique.x, y: brique.y });
+  });
+
+  let sprite = { balle: infos.getBalle(id), alerte: infos.alerte, briques: b };
+
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(sprite));
+});
+
+app.get("/nouvellebrique/", (req, res) => {
+  let brique = infos.getBrique();
+  if (brique != undefined) {
+    infos.nouvellesBriques.push(brique);
+  }
+  res.end();
 });
 
 app.post("/metajourraquette/", (req, res) => {

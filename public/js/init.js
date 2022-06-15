@@ -34,6 +34,9 @@ function avanceTemps() {
       document.querySelector("body").style.visibility = "visible";
     }
     alerte = data.alerte;
+    if (data.briques != undefined) {
+      data.briques.forEach((brique) => { creeBrique(brique.x, brique.y); });
+    }
   });
   afficheScore();
 }
@@ -100,6 +103,9 @@ document.addEventListener("keydown", function (event) {
   }
   if (event.code == "Space") {
     Alerte();
+  }
+  if (event.code == "Insert") {
+    nouvelleBrique();
   }
   if (event.code == "F1") {
     event.preventDefault();
