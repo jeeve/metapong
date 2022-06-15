@@ -53,3 +53,12 @@ svg {
   margin-right: 10px;
   margin-bottom: 5px;
 }
+
+#about {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: left;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
