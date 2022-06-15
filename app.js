@@ -111,8 +111,10 @@ app.post("/vitesse/", (req, res) => {
     let id = req.body.id;
     let dv = req.body.dv;
 
-    infos.decor.balle.vx = infos.decor.balle.vx * dv;
-    infos.decor.balle.vy = infos.decor.balle.vy * dv;
+    if (Math.abs(infos.decor.balle.vx * dv) < 3 && Math.abs(infos.decor.balle.vy * dv < 2)) {
+      infos.decor.balle.vx = infos.decor.balle.vx * dv;
+      infos.decor.balle.vy = infos.decor.balle.vy * dv;
+    }
   }
   res.end();
 });
