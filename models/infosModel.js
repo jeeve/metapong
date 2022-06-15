@@ -1,3 +1,5 @@
+const cx0 = 60;
+const cy0 = 50;
 const vx0 = 0.5;
 const vy0 = 0.4;
 
@@ -25,7 +27,7 @@ class InfosModel {
 
   contruitDecor() {
     this.decor.blocs = [];
-    this.decor.balle = { cx: 60, cy: 50, vx: vx0, vy: vy0 };
+    this.decor.balle = { cx: cx0, cy: cy0, vx: vx0, vy: vy0 };
     for (let i = 0; i < this.nbEcrans * 100; i++) {
       this.decor.blocs.push({ x: i, y: 0 });
       this.decor.blocs.push({ x: i, y: 95 });
@@ -195,10 +197,19 @@ class InfosModel {
 
     let x2 = x1 + vx;
     let y2 = y1 + vy;
-    this.decor.balle.cx = x2;
-    this.decor.balle.cy = y2;
-    this.decor.balle.vx = vx;
-    this.decor.balle.vy = vy;
+    if (this.EstDansJeu(x2, y2)) {
+      this.decor.balle.cx = x2;
+      this.decor.balle.cy = y2;
+      this.decor.balle.vx = vx;
+      this.decor.balle.vy = vy;
+    } else {
+      this.decor.balle.cx = cx0;
+      this.decor.balle.cy = cy0;
+    }
+  }
+
+  EstDansJeu(x, y) {
+    return x > 0 && x < this.nbEcrans * 100 && y > 0 && y < 100;
   }
 
   testAPerdu() {
