@@ -101,6 +101,10 @@ document.addEventListener("keydown", function (event) {
   if (event.code == "Space") {
     Alerte();
   }
+  if (event.code == "F1") {
+    event.preventDefault();
+    window.open('https://github.com/jeeve/metapong', '_blank');
+  }
 });
 
 document.addEventListener("wheel", function (event) {
