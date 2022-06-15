@@ -47,8 +47,8 @@ async function getDecor(id) {
   return decor;
 }
 
-async function getBalle(id) {
-  balle = {};
+async function getSprite(id) {
+  sprite = {};
 
   const init = {
     method: "POST",
@@ -62,13 +62,13 @@ async function getBalle(id) {
     credentials: "same-origin",
   };
 
-  await fetch("/balle/", init)
+  await fetch("/sprite/", init)
     .then((response) => response.json())
     .then((response) => {
-      balle = response;
+      sprite = response;
     });
 
-  return balle;
+  return sprite;
 }
 
 function metAJourRaquette(id) {

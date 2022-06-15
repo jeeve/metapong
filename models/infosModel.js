@@ -98,10 +98,9 @@ class InfosModel {
     return bloc.x >= xmin && bloc.x < xmax;
   }
 
-  balle(numeroEcran) {
+  getBalle(numeroEcran) {
     if (this.nbEcrans > 0) {
       let b = {
-        alerte: this.alerte,
         cx: this.decor.balle.cx,
         cy: this.decor.balle.cy,
         vx: this.decor.balle.vx,

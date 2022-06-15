@@ -35,9 +35,10 @@ app.post("/render/", (req, res) => {
   res.end(JSON.stringify(infos.render(req.body.id)));
 });
 
-app.post("/balle/", (req, res) => {
+app.post("/sprite/", (req, res) => {
+  let sprite = { balle: infos.getBalle(req.body.id), alerte: infos.alerte };
   res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify(infos.balle(req.body.id)));
+  res.end(JSON.stringify(sprite));
 });
 
 app.post("/metajourraquette/", (req, res) => {

@@ -25,8 +25,8 @@ function init() {
 }
 
 function avanceTemps() {
-  getBalle(ID).then((data) => {
-    deplaceBalle(data);
+  getSprite(ID).then((data) => {
+    deplaceBalle(data.balle);
     if (!alerte && data.alerte) {
       document.querySelector("body").style.visibility = "hidden";
     }
