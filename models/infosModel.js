@@ -192,10 +192,10 @@ class InfosModel {
       ) {
         vx = -vx;
         vy = -vy;
-      } else if (this.blocEn(x1 + 1 / 2 + vx, y1 + 1 / 2 + vy)) {
+      } /*else if (this.blocEn(x1 + 1 / 2 + vx, y1 + 1 / 2 + vy)) {
         vx = -vx;
         vy = -vy;
-      }
+      }*/
     }
 
     let x2 = x1 + vx;
