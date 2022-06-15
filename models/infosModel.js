@@ -119,18 +119,25 @@ class InfosModel {
   }
 
   creeBrique() {
-
-    function rand_5(min, max){
-      return Math.round((Math.random()*(max-min)+min)/5)*5;
-    } 
+    function rand_5(min, max) {
+      return Math.round((Math.random() * (max - min) + min) / 5) * 5;
+    }
 
     if (this.nbEcrans > 0) {
       let x = rand_5(5, 100 * this.nbEcrans - 5);
-      let y = rand_5(5, 95);
-      let b = { x: x, y: y };
-      if (!this.blocEn(b.x, b.y)) {
-        this.decor.blocs.push({ x: b.x, y: b.y });
-        return b;
+      let OK = true;
+      for (let i = 0; i < this.nbEcrans; i++) { // verifie qu'on est pas sur la verticle d'une raquette
+        if (x == rx+(i*100)) {
+          OK = false;
+        }
+      }
+      if (OK) {
+        let y = rand_5(5, 95);
+        let b = { x: x, y: y };
+        if (!this.blocEn(b.x, b.y)) {
+          this.decor.blocs.push({ x: b.x, y: b.y });
+          return b;
+        }
       }
       return {};
     } else {
