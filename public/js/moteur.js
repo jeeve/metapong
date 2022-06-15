@@ -2,6 +2,7 @@ function creeBloc(x, y) {
   var svg = document.getElementsByTagName("svg")[0];
 
   var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  rect.setAttribute("class", "bloc");
   rect.setAttribute("x", x + "%");
   rect.setAttribute("y", y + "%");
   rect.setAttribute("width", "5%");
@@ -31,6 +32,7 @@ function creeBalle(balle) {
   let svg = document.getElementsByTagName("svg")[0];
 
   let cercle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  cercle.setAttribute("class", "balle");
   cercle.setAttribute("cx", balle.cx + "%");
   cercle.setAttribute("cy", balle.cy + "%");
   cercle.setAttribute("r", "1%");
