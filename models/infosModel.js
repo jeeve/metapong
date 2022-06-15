@@ -2,6 +2,8 @@ const cx0 = 60;
 const cy0 = 50;
 const vx0 = 0.5;
 const vy0 = 0.4;
+const rx = 45;
+const ry = 50;
 
 class InfosModel {
   constructor() {
@@ -42,7 +44,7 @@ class InfosModel {
     for (let r = 0; r < this.nbEcrans; r++) {
       let raquette = [];
       for (let b = 0; b < 4; b++) {
-        raquette.push({ x: 50 + r * 100, y: 50 + b * 5 });
+        raquette.push({ x: rx + r * 100, y: ry + b * 5 });
       }
       this.decor.raquettes.push(raquette);
     }
@@ -116,9 +118,16 @@ class InfosModel {
     }
   }
 
-  getBrique() {
+  creeBrique() {
+
+    function rand_5(min, max){
+      return Math.round((Math.random()*(max-min)+min)/5)*5;
+    } 
+
     if (this.nbEcrans > 0) {
-      let b = { x: Math.floor(Math.random() * 100 * this.nbEcrans), y: Math.floor(Math.random() * 100) };
+      let x = rand_5(5, 100 * this.nbEcrans - 5);
+      let y = rand_5(5, 95);
+      let b = { x: x, y: y };
       if (!this.blocEn(b.x, b.y)) {
         this.decor.blocs.push({ x: b.x, y: b.y });
         return b;

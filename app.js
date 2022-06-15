@@ -47,10 +47,10 @@ app.post("/sprite/", (req, res) => {
       nouvellesBriques.push({ x: brique.x, y: brique.y });   
     }
   });
-  infos.nouvellesBriques = [];
-  nouvellesBriques.forEach(brique => {
-    infos.nouvellesBriques.push({ x: brique.x, y: brique.y });
-  });
+  infos.nouvellesBriques = nouvellesBriques;
+//nouvellesBriques.forEach(brique => {
+//    infos.nouvellesBriques.push({ x: brique.x, y: brique.y });
+ // });
 
   let sprite = { balle: infos.getBalle(id), alerte: infos.alerte, briques: b };
 
@@ -59,7 +59,7 @@ app.post("/sprite/", (req, res) => {
 });
 
 app.get("/nouvellebrique/", (req, res) => {
-  let brique = infos.getBrique();
+  let brique = infos.creeBrique();
   if (brique != undefined) {
     infos.nouvellesBriques.push(brique);
   }
