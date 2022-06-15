@@ -127,23 +127,24 @@ class InfosModel {
       const chercheMax = 100;
       let n = 1;
       while (n < chercheMax) {
-      let x = rand_5(5, 100 * this.nbEcrans - 5);
-      let OK = true;
-      for (let i = 0; i < this.nbEcrans; i++) { // verifie qu'on est pas sur la verticle d'une raquette
-        if (x == rx+(i*100)) {
-          OK = false;
+        let x = rand_5(5, 100 * this.nbEcrans - 5);
+        let OK = true;
+        for (let i = 0; i < this.nbEcrans; i++) {
+          // verifie qu'on est pas sur la verticle d'une raquette
+          if (x == rx + i * 100) {
+            OK = false;
+          }
         }
-      }
-      if (OK) {
-        let y = rand_5(5, 95);
-        let b = { x: x, y: y };
-        if (!this.blocEn(b.x, b.y)) {
-          this.decor.blocs.push({ x: b.x, y: b.y });
-          return b;
+        if (OK) {
+          let y = rand_5(5, 95);
+          let b = { x: x, y: y };
+          if (!this.blocEn(b.x, b.y)) {
+            this.decor.blocs.push({ x: b.x, y: b.y });
+            return b;
+          }
         }
+        n++;
       }
-      n++;
-    }
       return {};
     } else {
       return {};
