@@ -153,7 +153,7 @@ class InfosModel {
     let x1 = this.decor.balle.cx;
     let y1 = this.decor.balle.cy;
 
-    let vxt = vx;
+    let vxt = vx; // gestion des vitesses lentes
     let vyt = vy;
 
     if (vxt > vx0) {
@@ -172,16 +172,24 @@ class InfosModel {
     if (this.blocEn(x1 + 1 / 2 + vxt, y1 + 1 / 2)) {
       vx = -vx;
     } else {
-      if (this.blocEn(x1 + 1 / 2, y1 + 1 / 2 + vyt)) {
+      if (
+        this.blocEn(x1 + 1 / 2 + vxt, y1 + 1 / 2) &&
+        this.blocEn(x1 + 1 / 2, y1 + 1 / 2 + vyt)
+      ) {
+        vx = -vx;
         vy = -vy;
-      } else {
-        if (this.blocEn(x1 + 1 / 2 + vx, y1 + 1 / 2)) {
-          vx = -vx;
-        } else {
-          if (this.blocEn(x1 + 1 / 2, y1 + 1 / 2 + vy)) {
-            vy = -vy;
-          }
-        }
+      } else if (this.blocEn(x1 + 1 / 2, y1 + 1 / 2 + vyt)) {
+        vy = -vy;
+      } else if (this.blocEn(x1 + 1 / 2 + vx, y1 + 1 / 2)) {
+        vx = -vx;
+      } else if (this.blocEn(x1 + 1 / 2, y1 + 1 / 2 + vy)) {
+        vy = -vy;
+      } else if (
+        this.blocEn(x1 + 1 / 2 + vx, y1 + 1 / 2) &&
+        this.blocEn(x1 + 1 / 2, y1 + 1 / 2 + vy)
+      ) {
+        vx = -vx;
+        vy = -vy;
       }
     }
 
@@ -199,14 +207,14 @@ class InfosModel {
       this.tempoScore == 0
     ) {
       this.score.b++;
-      this.tempoScore = 50/Math.abs(this.decor.balle.vx);
+      this.tempoScore = 50 / Math.abs(this.decor.balle.vx);
     }
     if (
       this.decor.balle.cx + this.decor.balle.vx > this.nbEcrans * 100 - 10 &&
       this.tempoScore == 0
     ) {
       this.score.a++;
-      this.tempoScore = 50/Math.abs(this.decor.balle.vx);
+      this.tempoScore = 50 / Math.abs(this.decor.balle.vx);
     }
     this.tempoScore--;
     if (this.tempoScore < 0) {
