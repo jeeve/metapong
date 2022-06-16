@@ -127,7 +127,7 @@ class InfosModel {
       const chercheMax = 100;
       let n = 1;
       while (n < chercheMax) {
-        let x = rand_5(5, 100 * this.nbEcrans - 5);
+        let x = rand_5(5, 100 * this.nbEcrans - 10);
         let OK = true;
         for (let i = 0; i < this.nbEcrans; i++) {
           // verifie qu'on est pas sur la verticle d'une raquette
@@ -136,7 +136,7 @@ class InfosModel {
           }
         }
         if (OK) {
-          let y = rand_5(5, 95);
+          let y = rand_5(5, 90);
           let b = { x: x, y: y };
           if (!this.blocEn(b.x, b.y)) {
             this.decor.blocs.push({ x: b.x, y: b.y });
