@@ -85,15 +85,11 @@ function positionRaquette() {
   return ymin;
 }
 
-function distance(x1, y1, x2, y2) {
-  return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-}
-
 function supprimeBloc(x, y, classe) {
   document.querySelectorAll('.' + classe).forEach(e => {
     let bx = Number(e.getAttribute('x').replace("%", ""));
     let by = Number(e.getAttribute('y').replace("%", ""));
-    if (distance(bx, by, x, y) <= 5 / 2) {
+    if (bx == x && by == y) {
       e.remove();
     }
   });
