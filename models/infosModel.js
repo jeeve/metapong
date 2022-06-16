@@ -4,7 +4,7 @@ const vx0 = 0.5;
 const vy0 = 0.4;
 const rx = 50;
 const ry = 50;
-const nbViesBriques = 0;
+const nbViesBriquesMax = 5;
 
 class InfosModel {
   constructor() {
@@ -153,7 +153,7 @@ class InfosModel {
               x: b.x,
               y: b.y,
               classe: "brique",
-              vie: nbViesBriques,
+              vie: Math.floor(Math.random() * nbViesBriquesMax)
             });
             return b;
           }
