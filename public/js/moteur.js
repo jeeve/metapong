@@ -1,8 +1,8 @@
-function creeBloc(x, y) {
+function creeBloc(x, y, classe) {
   var svg = document.getElementsByTagName("svg")[0];
 
   var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  rect.setAttribute("class", "bloc");
+  rect.setAttribute("class", classe);
   rect.setAttribute("x", x + "%");
   rect.setAttribute("y", y + "%");
   rect.setAttribute("width", "5%");
@@ -39,21 +39,6 @@ function creeBalle(balle) {
   cercle.setAttribute("fill", "white");
 
   svg.appendChild(cercle);
-}
-
-function creeBrique(x, y) {
-  var svg = document.getElementsByTagName("svg")[0];
-
-  var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  rect.setAttribute("class", "brique");
-  rect.setAttribute("x", x + "%");
-  rect.setAttribute("y", y + "%");
-  rect.setAttribute("width", "5%");
-  rect.setAttribute("height", "5%");
-  rect.setAttribute("fill", "white");
-  rect.setAttribute("stroke", "white");
-
-  svg.appendChild(rect);
 }
 
 function deplaceBalle(balle) {

@@ -32,12 +32,12 @@ class InfosModel {
     this.decor.blocs = [];
     this.decor.balle = { cx: cx0, cy: cy0, vx: vx0, vy: vy0 };
     for (let i = 0; i < this.nbEcrans * 100; i++) {
-      this.decor.blocs.push({ x: i, y: 0 });
-      this.decor.blocs.push({ x: i, y: 95 });
+      this.decor.blocs.push({ x: i, y: 0, classe: 'bloc' });
+      this.decor.blocs.push({ x: i, y: 95, classe: 'bloc' });
     }
     for (let j = 0; j < 100; j++) {
-      this.decor.blocs.push({ x: 0, y: j });
-      this.decor.blocs.push({ x: this.nbEcrans * 100 - 5, y: j });
+      this.decor.blocs.push({ x: 0, y: j, classe: 'bloc' });
+      this.decor.blocs.push({ x: this.nbEcrans * 100 - 5, y: j, classe: 'bloc' });
     }
 
     this.decor.raquettes = [];
@@ -82,7 +82,7 @@ class InfosModel {
 
       for (let i = 0; i < this.decor.blocs.length; i++) {
         if (this.blocEstDansDecor(this.decor.blocs[i], numeroEcran)) {
-          let b = { x: this.decor.blocs[i].x, y: this.decor.blocs[i].y };
+          let b = { x: this.decor.blocs[i].x, y: this.decor.blocs[i].y, classe: this.decor.blocs[i].classe };
           decor.blocs.push(b);
           decor.blocs[decor.blocs.length - 1].x =
             this.decor.blocs[i].x - (numeroEcran - 1) * 100;
@@ -139,7 +139,7 @@ class InfosModel {
           let y = rand_5(5, 90);
           let b = { x: x, y: y };
           if (!this.blocEn(b.x, b.y)) {
-            this.decor.blocs.push({ x: b.x, y: b.y });
+            this.decor.blocs.push({ x: b.x, y: b.y, classe: 'brique' });
             return b;
           }
         }

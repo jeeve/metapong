@@ -35,7 +35,7 @@ function avanceTemps() {
     }
     alerte = data.alerte;
     if (data.briques != undefined) {
-      data.briques.forEach((brique) => { creeBrique(brique.x, brique.y); });
+      data.briques.forEach(brique => creeBloc(brique.x, brique.y, 'brique'));
     }
   });
   afficheScore();
@@ -44,9 +44,7 @@ function avanceTemps() {
 function dessineDecor(decor) {
   if (decor != undefined) {
     efface();
-    for (let i = 0; i < decor.blocs.length; i++) {
-      creeBloc(decor.blocs[i].x, decor.blocs[i].y);
-    }
+    decor.blocs.forEach(bloc => creeBloc(bloc.x, bloc.y, bloc.classe));
     creeBalle(decor.balle);
     creeRaquette(decor.raquette);
   }
