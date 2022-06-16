@@ -4,7 +4,7 @@ const vx0 = 0.5;
 const vy0 = 0.4;
 const rx = 50;
 const ry = 50;
-const nbViesBriquesMax = 5;
+const nbViesBriquesMax = 10;
 
 class InfosModel {
   constructor() {
