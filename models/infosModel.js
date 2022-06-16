@@ -2,8 +2,9 @@ const cx0 = 60;
 const cy0 = 50;
 const vx0 = 0.5;
 const vy0 = 0.4;
-const rx = 45;
+const rx = 50;
 const ry = 50;
+const nbViesBriques = 0;
 
 class InfosModel {
   constructor() {
@@ -16,6 +17,7 @@ class InfosModel {
     this.idEcransModifies = [];
     this.alerte = false;
     this.nouvellesBriques = [];
+    this.briquesMortes = [];
   }
 
   ajouteEcran() {
@@ -32,12 +34,16 @@ class InfosModel {
     this.decor.blocs = [];
     this.decor.balle = { cx: cx0, cy: cy0, vx: vx0, vy: vy0 };
     for (let i = 0; i < this.nbEcrans * 100; i++) {
-      this.decor.blocs.push({ x: i, y: 0, classe: 'bloc' });
-      this.decor.blocs.push({ x: i, y: 95, classe: 'bloc' });
+      this.decor.blocs.push({ x: i, y: 0, classe: "bloc" });
+      this.decor.blocs.push({ x: i, y: 95, classe: "bloc" });
     }
     for (let j = 0; j < 100; j++) {
-      this.decor.blocs.push({ x: 0, y: j, classe: 'bloc' });
-      this.decor.blocs.push({ x: this.nbEcrans * 100 - 5, y: j, classe: 'bloc' });
+      this.decor.blocs.push({ x: 0, y: j, classe: "bloc" });
+      this.decor.blocs.push({
+        x: this.nbEcrans * 100 - 5,
+        y: j,
+        classe: "bloc",
+      });
     }
 
     this.decor.raquettes = [];
@@ -82,7 +88,11 @@ class InfosModel {
 
       for (let i = 0; i < this.decor.blocs.length; i++) {
         if (this.blocEstDansDecor(this.decor.blocs[i], numeroEcran)) {
-          let b = { x: this.decor.blocs[i].x, y: this.decor.blocs[i].y, classe: this.decor.blocs[i].classe };
+          let b = {
+            x: this.decor.blocs[i].x,
+            y: this.decor.blocs[i].y,
+            classe: this.decor.blocs[i].classe,
+          };
           decor.blocs.push(b);
           decor.blocs[decor.blocs.length - 1].x =
             this.decor.blocs[i].x - (numeroEcran - 1) * 100;
@@ -139,7 +149,12 @@ class InfosModel {
           let y = rand_5(5, 90);
           let b = { x: x, y: y };
           if (!this.blocEn(b.x, b.y)) {
-            this.decor.blocs.push({ x: b.x, y: b.y, classe: 'brique' });
+            this.decor.blocs.push({
+              x: b.x,
+              y: b.y,
+              classe: "brique",
+              vie: nbViesBriques,
+            });
             return b;
           }
         }
@@ -151,32 +166,55 @@ class InfosModel {
     }
   }
 
-  blocEn(x, y) {
+  getIndiceBlocEn(x, y) {
     function distance(x1, y1, x2, y2) {
       return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
     }
 
-    let OK = false;
-    this.decor.blocs.forEach(function (bloc) {
+    let indice = -1;
+    this.decor.blocs.forEach(function (bloc, i) {
       if (distance(bloc.x + 5 / 2, bloc.y + 5 / 2, x, y) <= 5 / 2) {
-        OK = true;
+        indice = i;
         return;
       }
     });
     this.decor.raquettes.forEach(function (raquette) {
-      raquette.forEach(function (blocRaquette) {
+      raquette.forEach(function (blocRaquette, i) {
         if (
           distance(blocRaquette.x + 5 / 2, blocRaquette.y + 5 / 2, x, y) <=
           5 / 2
         ) {
-          OK = true;
+          indice = i;
           return;
         }
         return;
       });
     });
 
-    return OK;
+    return indice;
+  }
+
+  blocEn(x, y) {
+    return this.getIndiceBlocEn(x, y) > -1;
+  }
+
+  toucheBloc(x, y) {
+    let i = this.getIndiceBlocEn(x, y);
+    if (i > -1) {
+      let bloc = this.decor.blocs [i];
+      if (bloc.classe == 'brique') {
+        if (bloc.vie > 0) {
+          bloc.vie--;
+        } else {
+          let b = {};
+          Object.assign(b, bloc);
+          this.briquesMortes.push(b);
+          this.decor.blocs.splice(i, 1);
+        }
+      }
+      return true;
+    }
+    return false;
   }
 
   avanceTemps() {
@@ -206,31 +244,26 @@ class InfosModel {
       vyt = -vy0;
     }
 
-    if (this.blocEn(x1 + 1 / 2 + vxt, y1 + 1 / 2)) {
+    if (this.toucheBloc(x1 + 1 / 2 + vxt, y1 + 1 / 2)) {
       vx = -vx;
-    } else {
-      if (
-        this.blocEn(x1 + 1 / 2 + vxt, y1 + 1 / 2) &&
-        this.blocEn(x1 + 1 / 2, y1 + 1 / 2 + vyt)
-      ) {
-        vx = -vx;
-        vy = -vy;
-      } else if (this.blocEn(x1 + 1 / 2, y1 + 1 / 2 + vyt)) {
-        vy = -vy;
-      } else if (this.blocEn(x1 + 1 / 2 + vx, y1 + 1 / 2)) {
-        vx = -vx;
-      } else if (this.blocEn(x1 + 1 / 2, y1 + 1 / 2 + vy)) {
-        vy = -vy;
-      } else if (
-        this.blocEn(x1 + 1 / 2 + vx, y1 + 1 / 2) &&
-        this.blocEn(x1 + 1 / 2, y1 + 1 / 2 + vy)
-      ) {
-        vx = -vx;
-        vy = -vy;
-      } /*else if (this.blocEn(x1 + 1 / 2 + vx, y1 + 1 / 2 + vy)) {
-        vx = -vx;
-        vy = -vy;
-      }*/
+    } else if (
+      this.toucheBloc(x1 + 1 / 2 + vxt, y1 + 1 / 2) &&
+      this.toucheBloc(x1 + 1 / 2, y1 + 1 / 2 + vyt)
+    ) {
+      vx = -vx;
+      vy = -vy;
+    } else if (this.toucheBloc(x1 + 1 / 2, y1 + 1 / 2 + vyt)) {
+      vy = -vy;
+    } else if (this.toucheBloc(x1 + 1 / 2 + vx, y1 + 1 / 2)) {
+      vx = -vx;
+    } else if (this.toucheBloc(x1 + 1 / 2, y1 + 1 / 2 + vy)) {
+      vy = -vy;
+    } else if (
+      this.toucheBloc(x1 + 1 / 2 + vx, y1 + 1 / 2) &&
+      this.toucheBloc(x1 + 1 / 2, y1 + 1 / 2 + vy)
+    ) {
+      vx = -vx;
+      vy = -vy;
     }
 
     let x2 = x1 + vx;
@@ -315,6 +348,7 @@ class InfosModel {
       this.idEcransModifies = [];
       this.alerte = false;
       this.nouvellesBriques = [];
+      this.briquesMortes = [];
     } else {
       this.decorEstModifie();
       this.contruitDecor();

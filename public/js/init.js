@@ -37,6 +37,9 @@ function avanceTemps() {
     if (data.briques != undefined) {
       data.briques.forEach(brique => creeBloc(brique.x, brique.y, 'brique'));
     }
+    if (data.briquesMortes != undefined) {
+      data.briquesMortes.forEach(brique => supprimeBloc(brique.x, brique.y, 'brique'));
+    }
   });
   afficheScore();
 }

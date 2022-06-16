@@ -42,17 +42,25 @@ app.post("/sprite/", (req, res) => {
   let nouvellesBriques = [];
   infos.nouvellesBriques.forEach((brique) => {
     if (infos.blocEstDansDecor(brique, id)) {
-      b.push({ x: brique.x - (id - 1) * 100, y: brique.y });   
+      b.push({ x: brique.x - (id - 1) * 100, y: brique.y, classe: brique.classe });   
     } else {
-      nouvellesBriques.push({ x: brique.x, y: brique.y });   
+      nouvellesBriques.push({ x: brique.x, y: brique.y, classe: brique.classe });   
     }
   });
   infos.nouvellesBriques = nouvellesBriques;
-//nouvellesBriques.forEach(brique => {
-//    infos.nouvellesBriques.push({ x: brique.x, y: brique.y });
- // });
 
-  let sprite = { balle: infos.getBalle(id), alerte: infos.alerte, briques: b };
+  let bMortes = [];
+  let briquesMortes = [];
+  infos.briquesMortes.forEach((brique) => {
+    if (infos.blocEstDansDecor(brique, id)) {
+      bMortes.push({ x: brique.x - (id - 1) * 100, y: brique.y, classe: brique.classe });   
+    } else {
+      briquesMortes.push({ x: brique.x, y: brique.y, classe: brique.classe });   
+    }
+  });
+  infos.briquesMortes = briquesMortes;
+
+  let sprite = { balle: infos.getBalle(id), alerte: infos.alerte, briques: b, briquesMortes: bMortes };
 
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(sprite));
