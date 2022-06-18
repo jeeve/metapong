@@ -158,7 +158,7 @@ function positionBalle() {
 }
 
 function raquetteAuto() {
-  if (document.querySelector("#auto-mode").checked) {
+  if (autoMode) {
     let b = positionBalle();
     let xb = b.x;
     if (Math.abs(xb - 50) < 20) {

@@ -71,7 +71,12 @@ svg {
   transform: translate(-50%, -50%);
 }
 
-#controles label {
+#controles .controle {
+  margin-right: 5px;
+  display: inline-block;
+}
+
+#controles button, #controles input, #controles label {
   padding: 5px;
 }
 

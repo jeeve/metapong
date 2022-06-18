@@ -176,7 +176,7 @@ async function idEcranAChange(id) {
   return etat;
 }
 
-function Alerte() {
+function goAlerte() {
 
   const init = {
     method: "GET",

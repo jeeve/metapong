@@ -1,8 +1,32 @@
 let ID = 0;
 let nbEcrans = 0;
 let alerte = false;
+let autoMode = false;
 
 document.querySelector("#bouton-init").addEventListener("click", init);
+document.querySelector("#bouton-moins").addEventListener("click", changeVitesseMoins);
+document.querySelector("#bouton-plus").addEventListener("click", changeVitessePlus);
+document.querySelector("#bouton-insert").addEventListener("click", nouvelleBrique);
+document.querySelector("#bouton-alerte").addEventListener("click", goAlerte);
+document.querySelector("#bouton-auto").addEventListener("click", toggleModeAuto);
+
+function changeVitesseMoins() {
+  changeVitesse(0.8);
+}
+
+function changeVitessePlus() {
+  changeVitesse(1.2);
+}
+
+function toggleModeAuto() {
+  autoMode = ! autoMode;
+  if (autoMode) {
+    document.querySelector("#bouton-auto").innerHTML = 'auto OFF'; 
+  }
+  else {
+    document.querySelector("#bouton-auto").innerHTML = 'auto ON'; 
+  }
+}
 
 register().then((data) => {
   ID = data.id;
@@ -106,7 +130,7 @@ document.addEventListener("keydown", function (event) {
     changeVitesse(0.8);
   }
   if (event.code == "Space") {
-    Alerte();
+    goAlerte();
   }
   if (event.code == "Insert") {
     nouvelleBrique();
