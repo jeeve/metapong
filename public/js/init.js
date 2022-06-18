@@ -131,13 +131,13 @@ document.addEventListener("keydown", function (event) {
 
 document.addEventListener("wheel", function (event) {
   if (event.deltaY > 0) {
-    if (positionRaquette() + tailleRaquette() * 5 < 95) {
+    if (positionRaquette() + tailleRaquette() * 5 < 100-Math.abs(event.deltaY/50) - 5) {
       deplaceRaquette(-event.deltaY / 50);
       metAJourRaquette(ID);
     }
   }
   if (event.deltaY < 0) {
-    if (positionRaquette() > 5) {
+    if (positionRaquette() > Math.abs(event.deltaY/50) + 5) {
       deplaceRaquette(-event.deltaY / 50);
       metAJourRaquette(ID);
     }

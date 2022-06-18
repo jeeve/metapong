@@ -97,8 +97,7 @@ function supprimeBloc(x, y, classe) {
 
 function coloreMur(classe) {
   document.querySelectorAll("." + classe).forEach((elt) => {
-    elt.style["filter"] =
-      "invert(48%) sepia(80%) saturate(3476%) hue-rotate(324deg) brightness(118%) contrast(119%)";
+    elt.classList.add('touche');
   });
   if (classe == 'gauche') {
     setTimeout(initCouleurMurGauche, 100);
@@ -110,13 +109,13 @@ function coloreMur(classe) {
 
 function initCouleurMurGauche() {
   document.querySelectorAll(".gauche").forEach((elt) => {
-    elt.style["filter"] = "";
+    elt.classList.remove('touche');
   });
 }
 
 function initCouleurMurDroit() {
   document.querySelectorAll(".droit").forEach((elt) => {
-    elt.style["filter"] = "";
+    elt.classList.remove('touche');
   });
 }
 
