@@ -41,6 +41,12 @@ function creeBalle(balle) {
   svg.appendChild(cercle);
 }
 
+function creeRaquette(raquette) {
+  raquette.forEach(function (blocRaquette) {
+    creeBlocRaquette(blocRaquette.x, blocRaquette.y);
+  });
+}
+
 function deplaceBalle(balle) {
   if (balle != undefined) {
     let cercle = document.getElementsByTagName("circle")[0];
@@ -119,3 +125,27 @@ function initCouleurMurDroit() {
   });
 }
 
+function bougeRaquette(dy) {
+  if (dy < 0) {
+    const ymax = 95; 
+    if (positionRaquette() + tailleRaquette() < ymax) {
+      if (positionRaquette() + tailleRaquette() >= ymax-5) {
+        deplaceRaquette(-(ymax - (positionRaquette() + tailleRaquette())));
+      } else {
+        deplaceRaquette(dy);
+      }
+      metAJourRaquette(ID);
+    }
+  }
+  if (dy > 0) {
+    const ymin = 5; 
+    if (positionRaquette() > ymin) {
+      if (positionRaquette() <= ymin+5) {
+        deplaceRaquette(+(positionRaquette()-ymin));
+      } else {
+        deplaceRaquette(dy);
+      }
+      metAJourRaquette(ID);
+    }
+  }
+}

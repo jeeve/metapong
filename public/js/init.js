@@ -66,12 +66,6 @@ function dessineDecor(decor) {
   }
 }
 
-function creeRaquette(raquette) {
-  raquette.forEach(function (blocRaquette) {
-    creeBlocRaquette(blocRaquette.x, blocRaquette.y);
-  });
-}
-
 function raffraichitDecor() {
   tagDecorEstModifie(ID).then((data) => {
     if (data.tag) {
@@ -100,26 +94,10 @@ setInterval(raffraichitDecor, 5000);
 
 document.addEventListener("keydown", function (event) {
   if (event.code == "ArrowDown") {
-    const ymax = 95; 
-    if (positionRaquette() + tailleRaquette() < ymax) {
-      if (positionRaquette() + tailleRaquette() >= ymax-5) {
-        deplaceRaquette(-(ymax - (positionRaquette() + tailleRaquette())));
-      } else {
-        deplaceRaquette(-5);
-      }
-      metAJourRaquette(ID);
-    }
+    bougeRaquette(-5);
   }
   if (event.code == "ArrowUp") {
-    const ymin = 5; 
-    if (positionRaquette() > ymin) {
-      if (positionRaquette() <= ymin+5) {
-        deplaceRaquette(+(positionRaquette()-ymin));
-      } else {
-        deplaceRaquette(+5);
-      }
-      metAJourRaquette(ID);
-    }
+    bougeRaquette(+5);
   }
   if (event.code == "NumpadAdd") {
     changeVitesse(1.2);
@@ -140,28 +118,5 @@ document.addEventListener("keydown", function (event) {
 });
 
 document.addEventListener("wheel", function (event) {
-  if (event.deltaY > 0) {
-    const dy = event.deltaY/50;
-    const ymax = 95; 
-    if (positionRaquette() + tailleRaquette() < ymax) {
-      if (positionRaquette() + tailleRaquette() >= ymax-5) {
-        deplaceRaquette(-(ymax - (positionRaquette() + tailleRaquette())));
-      } else {
-        deplaceRaquette(-dy);
-      }
-      metAJourRaquette(ID);
-    }
-  }
-  if (event.deltaY < 0) {
-    const ymin = 5; 
-    const dy = event.deltaY/50;
-    if (positionRaquette() > ymin) {
-      if (positionRaquette() <= ymin+5) {
-        deplaceRaquette(+(positionRaquette()-ymin));
-      } else {
-        deplaceRaquette(-dy);
-      }
-      metAJourRaquette(ID);
-    }
-  }
+  bougeRaquette(-event.deltaY/50); 
 });
