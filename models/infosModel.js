@@ -18,6 +18,8 @@ class InfosModel {
     this.alerte = false;
     this.nouvellesBriques = [];
     this.briquesMortes = [];
+    this.perduGauche = false;
+    this.perduDroit = false;
   }
 
   ajouteEcran() {
@@ -37,12 +39,12 @@ class InfosModel {
       this.decor.blocs.push({ x: i, y: 0, classe: "bloc" });
       this.decor.blocs.push({ x: i, y: 95, classe: "bloc" });
     }
-    for (let j = 0; j < 100; j++) {
-      this.decor.blocs.push({ x: 0, y: j, classe: "bloc" });
+    for (let j = 5; j < 91; j++) {
+      this.decor.blocs.push({ x: 0, y: j, classe: "gauche" });
       this.decor.blocs.push({
         x: this.nbEcrans * 100 - 5,
         y: j,
-        classe: "bloc",
+        classe: "droit",
       });
     }
 
@@ -288,6 +290,7 @@ class InfosModel {
       this.decor.balle.cx - this.decor.balle.vx < 10 &&
       this.tempoScore == 0
     ) {
+      this.perduGauche = true;
       this.score.b++;
       this.tempoScore = 50 / Math.abs(this.decor.balle.vx);
     }
@@ -295,6 +298,7 @@ class InfosModel {
       this.decor.balle.cx + this.decor.balle.vx > this.nbEcrans * 100 - 10 &&
       this.tempoScore == 0
     ) {
+      this.perduDroit= true;
       this.score.a++;
       this.tempoScore = 50 / Math.abs(this.decor.balle.vx);
     }
@@ -349,6 +353,8 @@ class InfosModel {
       this.alerte = false;
       this.nouvellesBriques = [];
       this.briquesMortes = [];
+      this.perduGauche = false;
+      this.perduDroit = false;
     } else {
       this.decorEstModifie();
       this.contruitDecor();

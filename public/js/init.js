@@ -1,4 +1,5 @@
 let ID = 0;
+let nbEcrans = 0;
 let alerte = false;
 
 document.querySelector("#bouton-init").addEventListener("click", init);
@@ -7,7 +8,8 @@ register().then((data) => {
   ID = data.id;
   document.querySelector("#numero-ecran").innerHTML = ID;
   signal(ID).then((data) => {
-    document.querySelector("#nombre-ecrans").innerHTML = " / " + data;
+    nbEcrans = data;
+    document.querySelector("#nombre-ecrans").innerHTML = " / " + nbEcrans;
   });
   getDecor(ID).then((data) => dessineDecor(data));
   setInterval(avanceTemps, 10);
@@ -18,7 +20,8 @@ function init() {
   ID = 1;
   document.querySelector("#numero-ecran").innerHTML = ID;
   signal(ID).then((data) => {
-    document.querySelector("#nombre-ecrans").innerHTML = " / " + data;
+    nbEcrans = data;
+    document.querySelector("#nombre-ecrans").innerHTML = " / " + nbEcrans;
   });
   afficheScore();
   getDecor(ID).then((data) => dessineDecor(data));
@@ -35,10 +38,20 @@ function avanceTemps() {
     }
     alerte = data.alerte;
     if (data.briques != undefined) {
-      data.briques.forEach(brique => creeBloc(brique.x, brique.y, 'brique'));
+      data.briques.forEach((brique) => creeBloc(brique.x, brique.y, "brique"));
     }
     if (data.briquesMortes != undefined) {
-      data.briquesMortes.forEach(brique => supprimeBloc(brique.x, brique.y, 'brique'));
+      data.briquesMortes.forEach((brique) =>
+        supprimeBloc(brique.x, brique.y, "brique")
+      );
+    }
+    if (ID == 1 || ID == nbEcrans) {
+      if (data.perdu == "gauche") {
+        coloreMur("gauche");
+      }
+      if (data.perdu == "droit") {
+        coloreMur("droit");
+      }
     }
   });
   afficheScore();
@@ -47,7 +60,7 @@ function avanceTemps() {
 function dessineDecor(decor) {
   if (decor != undefined) {
     efface();
-    decor.blocs.forEach(bloc => creeBloc(bloc.x, bloc.y, bloc.classe));
+    decor.blocs.forEach((bloc) => creeBloc(bloc.x, bloc.y, bloc.classe));
     creeBalle(decor.balle);
     creeRaquette(decor.raquette);
   }
@@ -66,7 +79,8 @@ function raffraichitDecor() {
     }
   });
   signal(ID).then((data) => {
-    document.querySelector("#nombre-ecrans").innerHTML = " / " + data;
+    nbEcrans = data;
+    document.querySelector("#nombre-ecrans").innerHTML = " / " + nbEcrans;
   });
   idEcranAChange(ID).then((data) => {
     if (data.aChange) {
@@ -74,7 +88,8 @@ function raffraichitDecor() {
       ID = data.id;
       document.querySelector("#numero-ecran").innerHTML = ID;
       signal(ID).then((data) => {
-        document.querySelector("#nombre-ecrans").innerHTML = " / " + data;
+        nbEcrans = data;
+        document.querySelector("#nombre-ecrans").innerHTML = " / " + nbEcrans;
       });
       getDecor(ID).then((data) => dessineDecor(data));
     }
@@ -110,7 +125,7 @@ document.addEventListener("keydown", function (event) {
   }
   if (event.code == "F1") {
     event.preventDefault();
-    window.open('https://github.com/jeeve/metapong', '_blank');
+    window.open("https://github.com/jeeve/metapong", "_blank");
   }
 });
 

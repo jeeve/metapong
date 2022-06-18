@@ -60,7 +60,19 @@ app.post("/sprite/", (req, res) => {
   });
   infos.briquesMortes = briquesMortes;
 
-  let sprite = { balle: infos.getBalle(id), alerte: infos.alerte, briques: b, briquesMortes: bMortes };
+  let aPerdu = '';
+  if (id == 1 || id == infos.nbEcrans) {
+    if (infos.perduGauche) {
+      aPerdu = 'gauche';
+      infos.perduGauche = false;
+    }
+    if (infos.perduDroit) {
+      aPerdu = 'droit';
+      infos.perduDroit = false;
+    }
+  }
+
+  let sprite = { balle: infos.getBalle(id), alerte: infos.alerte, briques: b, briquesMortes: bMortes, perdu: aPerdu };
 
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(sprite));

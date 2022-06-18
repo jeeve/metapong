@@ -86,11 +86,37 @@ function positionRaquette() {
 }
 
 function supprimeBloc(x, y, classe) {
-  document.querySelectorAll('.' + classe).forEach(e => {
-    let bx = Number(e.getAttribute('x').replace("%", ""));
-    let by = Number(e.getAttribute('y').replace("%", ""));
+  document.querySelectorAll("." + classe).forEach((e) => {
+    let bx = Number(e.getAttribute("x").replace("%", ""));
+    let by = Number(e.getAttribute("y").replace("%", ""));
     if (bx == x && by == y) {
       e.remove();
     }
   });
 }
+
+function coloreMur(classe) {
+  document.querySelectorAll("." + classe).forEach((elt) => {
+    elt.style["filter"] =
+      "invert(48%) sepia(80%) saturate(3476%) hue-rotate(324deg) brightness(118%) contrast(119%)";
+  });
+  if (classe == 'gauche') {
+    setTimeout(initCouleurMurGauche, 100);
+  }
+  if (classe == 'droit') {
+    setTimeout(initCouleurMurDroit, 100);
+  }
+}
+
+function initCouleurMurGauche() {
+  document.querySelectorAll(".gauche").forEach((elt) => {
+    elt.style["filter"] = "";
+  });
+}
+
+function initCouleurMurDroit() {
+  document.querySelectorAll(".droit").forEach((elt) => {
+    elt.style["filter"] = "";
+  });
+}
+
