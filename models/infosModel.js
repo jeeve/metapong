@@ -133,7 +133,7 @@ class InfosModel {
 
   creeBrique() {
     function rand_5(min, max) {
-      return Math.round((Math.random() * (max - min) + min) / 5) * 5;
+      return Math.floor((Math.random() * (max - min) + min) / 5) * 5;
     }
 
     if (this.nbEcrans > 0) {
@@ -153,6 +153,7 @@ class InfosModel {
           let v = Math.floor(Math.random() * nbViesBriquesMax);
           if (!this.blocEn(x, y)) {
             let b = { x: x, y: y, classe: 'brique', vie: v };
+            console.log(y);
             this.decor.blocs.push(b);
             let res = {};
             Object.assign(res, b);
@@ -162,7 +163,7 @@ class InfosModel {
         n++;
       }
     }
-    return {};
+    return false;
   }
 
   getIndiceBlocEn(x, y) {
