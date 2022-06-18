@@ -152,8 +152,7 @@ class InfosModel {
           let y = rand_5(5, 90);
           let v = Math.floor(Math.random() * nbViesBriquesMax);
           if (!this.blocEn(x, y)) {
-            let b = { x: x, y: y, classe: 'brique', vie: v };
-            console.log(y);
+            let b = { x: x, y: y, classe: "brique", vie: v };
             this.decor.blocs.push(b);
             let res = {};
             Object.assign(res, b);
@@ -205,14 +204,16 @@ class InfosModel {
   }
 
   blocEn(x, y) {
-    return this.getIndiceBlocEn(x, y) > -1 || this.getIndiceBlocRaquetteEn(x, y) > -1;
+    return (
+      this.getIndiceBlocEn(x, y) > -1 || this.getIndiceBlocRaquetteEn(x, y) > -1
+    );
   }
 
   toucheBloc(x, y) {
     let i = this.getIndiceBlocEn(x, y);
     if (i > -1) {
       let bloc = this.decor.blocs[i];
-      if (bloc.classe == 'brique') {
+      if (bloc.classe == "brique") {
         if (bloc.vie > 0) {
           bloc.vie--;
         } else {
@@ -280,6 +281,9 @@ class InfosModel {
     ) {
       vx = -vx;
       vy = -vy;
+    } else if (this.toucheBloc(x1 + 1 / 2 + vx, y1 + 1 / 2 + vy)) {
+      vx = -vx;
+      vy = -vy;
     }
 
     let x2 = x1 + vx;
@@ -312,7 +316,7 @@ class InfosModel {
       this.decor.balle.cx + this.decor.balle.vx > this.nbEcrans * 100 - 10 &&
       this.tempoScore == 0
     ) {
-      this.perduDroit= true;
+      this.perduDroit = true;
       this.score.a++;
       this.tempoScore = 15 / Math.abs(this.decor.balle.vx);
     }
