@@ -162,14 +162,23 @@ function raquetteAuto() {
     let b = positionBalle();
     let xb = b.x;
     if (Math.abs(xb - 50) < 20) {
-      let yb = b.y;
-      let yr = positionRaquette() + tailleRaquette() / 2;
-
-      if (yr < yb) {
-        bougeRaquette(-5);
+      let OK = true;
+      if (ID == 1 && nbEcrans > 1 && xb < 50) {
+        OK = false;
       }
-      if (yr > yb) {
-        bougeRaquette(+5);
+      if (ID == nbEcrans && nbEcrans > 1 && xb > 50) {
+        OK = false;
+      }
+      if (OK) {
+        let yb = b.y;
+        let yr = positionRaquette() + tailleRaquette() / 2;
+
+        if (yr < yb) {
+          bougeRaquette(-5);
+        }
+        if (yr > yb) {
+          bougeRaquette(+5);
+        }
       }
     }
   }
