@@ -161,14 +161,16 @@ function raquetteAuto() {
   if (document.querySelector("#auto-mode").checked) {
     let b = positionBalle();
     let xb = b.x;
-    let yb = b.y;
-    let yr = positionRaquette() + tailleRaquette() / 2;
+    if (Math.abs(xb - 50) < 20) {
+      let yb = b.y;
+      let yr = positionRaquette() + tailleRaquette() / 2;
 
-    if (yr < yb) {
-      bougeRaquette(-5);
-    }
-    if (yr > yb) {
-      bougeRaquette(+5);
+      if (yr < yb) {
+        bougeRaquette(-5);
+      }
+      if (yr > yb) {
+        bougeRaquette(+5);
+      }
     }
   }
 }
