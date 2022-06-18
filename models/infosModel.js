@@ -150,23 +150,19 @@ class InfosModel {
         }
         if (OK) {
           let y = rand_5(5, 90);
-          let b = { x: x, y: y };
+          let v = Math.floor(Math.random() * nbViesBriquesMax);
+          let b = { x: x, y: y, classe: 'brique', vie: v };
           if (!this.blocEn(b.x, b.y)) {
-            this.decor.blocs.push({
-              x: b.x,
-              y: b.y,
-              classe: "brique",
-              vie: Math.floor(Math.random() * nbViesBriquesMax)
-            });
-            return b;
+            this.decor.blocs.push(b);
+            let res = {};
+            Object.assign(res, b);
+            return res;
           }
         }
         n++;
       }
-      return {};
-    } else {
-      return {};
     }
+    return false;
   }
 
   getIndiceBlocEn(x, y) {
@@ -208,7 +204,7 @@ class InfosModel {
   }
 
   blocEn(x, y) {
-    return this.getIndiceBlocEn(x, y) > -1;
+    return this.getIndiceBlocEn(x, y) > -1 || this.getIndiceBlocRaquetteEn(x, y) > -1;
   }
 
   toucheBloc(x, y) {

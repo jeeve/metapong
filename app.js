@@ -112,7 +112,7 @@ app.post("/sprite/", (req, res) => {
 
 app.get("/nouvellebrique/", (req, res) => {
   let brique = infos.creeBrique();
-  if (brique != undefined) {
+  if (brique) {
     infos.nouvellesBriques.push(brique);
   }
   res.end();
