@@ -36,15 +36,22 @@ app.post("/render/", (req, res) => {
 });
 
 app.post("/sprite/", (req, res) => {
-
   let id = req.body.id;
   let b = [];
   let nouvellesBriques = [];
   infos.nouvellesBriques.forEach((brique) => {
     if (infos.blocEstDansDecor(brique, id)) {
-      b.push({ x: brique.x - (id - 1) * 100, y: brique.y, classe: brique.classe });   
+      b.push({
+        x: brique.x - (id - 1) * 100,
+        y: brique.y,
+        classe: brique.classe,
+      });
     } else {
-      nouvellesBriques.push({ x: brique.x, y: brique.y, classe: brique.classe });   
+      nouvellesBriques.push({
+        x: brique.x,
+        y: brique.y,
+        classe: brique.classe,
+      });
     }
   });
   infos.nouvellesBriques = nouvellesBriques;
@@ -53,26 +60,51 @@ app.post("/sprite/", (req, res) => {
   let briquesMortes = [];
   infos.briquesMortes.forEach((brique) => {
     if (infos.blocEstDansDecor(brique, id)) {
-      bMortes.push({ x: brique.x - (id - 1) * 100, y: brique.y, classe: brique.classe });   
+      bMortes.push({
+        x: brique.x - (id - 1) * 100,
+        y: brique.y,
+        classe: brique.classe,
+      });
     } else {
-      briquesMortes.push({ x: brique.x, y: brique.y, classe: brique.classe });   
+      briquesMortes.push({ x: brique.x, y: brique.y, classe: brique.classe });
     }
   });
   infos.briquesMortes = briquesMortes;
 
-  let aPerdu = '';
-  if (id == 1 || id == infos.nbEcrans) {
-    if (infos.perduGauche) {
-      aPerdu = 'gauche';
-      infos.perduGauche = false;
+  let aPerdu = "";
+  if (infos.nbEcrans == 1) {
+    if (id == 1 || id == infos.nbEcrans) {
+      if (infos.perduGauche) {
+        aPerdu = "gauche";
+        infos.perduGauche = false;
+      }
+      if (infos.perduDroit) {
+        aPerdu = "droit";
+        infos.perduDroit = false;
+      }
     }
-    if (infos.perduDroit) {
-      aPerdu = 'droit';
-      infos.perduDroit = false;
+  } else {
+    if (id == 1) {
+      if (infos.perduGauche) {
+        aPerdu = "gauche";
+        infos.perduGauche = false;
+      }
+    }
+    if (id == infos.nbEcrans) {
+      if (infos.perduDroit) {
+        aPerdu = "droit";
+        infos.perduDroit = false;
+      }
     }
   }
 
-  let sprite = { balle: infos.getBalle(id), alerte: infos.alerte, briques: b, briquesMortes: bMortes, perdu: aPerdu };
+  let sprite = {
+    balle: infos.getBalle(id),
+    alerte: infos.alerte,
+    briques: b,
+    briquesMortes: bMortes,
+    perdu: aPerdu,
+  };
 
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(sprite));
@@ -157,7 +189,10 @@ app.post("/vitesse/", (req, res) => {
     let id = req.body.id;
     let dv = req.body.dv;
 
-    if (Math.abs(infos.decor.balle.vx * dv) < 3 && Math.abs(infos.decor.balle.vy * dv < 2)) {
+    if (
+      Math.abs(infos.decor.balle.vx * dv) < 3 &&
+      Math.abs(infos.decor.balle.vy * dv < 2)
+    ) {
       infos.decor.balle.vx = infos.decor.balle.vx * dv;
       infos.decor.balle.vy = infos.decor.balle.vy * dv;
     }
