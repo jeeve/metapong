@@ -101,9 +101,9 @@ setInterval(raffraichitDecor, 5000);
 document.addEventListener("keydown", function (event) {
   if (event.code == "ArrowDown") {
     const ymax = 95; 
-    if (positionRaquette() + tailleRaquette() * 5 < ymax) {
-      if (positionRaquette() + tailleRaquette() * 5 >= ymax-5) {
-        deplaceRaquette(-(ymax - (positionRaquette() + tailleRaquette() * 5)));
+    if (positionRaquette() + tailleRaquette() < ymax) {
+      if (positionRaquette() + tailleRaquette() >= ymax-5) {
+        deplaceRaquette(-(ymax - (positionRaquette() + tailleRaquette())));
       } else {
         deplaceRaquette(-5);
       }
@@ -143,9 +143,9 @@ document.addEventListener("wheel", function (event) {
   if (event.deltaY > 0) {
     const dy = event.deltaY/50;
     const ymax = 95; 
-    if (positionRaquette() + tailleRaquette() * 5 < ymax) {
-      if (positionRaquette() + tailleRaquette() * 5 >= ymax-5) {
-        deplaceRaquette(-(ymax - (positionRaquette() + tailleRaquette() * 5)));
+    if (positionRaquette() + tailleRaquette() < ymax) {
+      if (positionRaquette() + tailleRaquette() >= ymax-5) {
+        deplaceRaquette(-(ymax - (positionRaquette() + tailleRaquette())));
       } else {
         deplaceRaquette(-dy);
       }

@@ -5,6 +5,7 @@ const vy0 = 0.4;
 const rx = 50;
 const ry = 50;
 const nbViesBriquesMax = 10;
+const tailleRaquette = 4;
 
 class InfosModel {
   constructor() {
@@ -51,8 +52,8 @@ class InfosModel {
     this.decor.raquettes = [];
     for (let r = 0; r < this.nbEcrans; r++) {
       let raquette = [];
-      for (let b = 0; b < 4; b++) {
-        raquette.push({ x: rx + r * 100, y: ry + b * 5 });
+      for (let b = 0; b < tailleRaquette * 5; b++) {
+        raquette.push({ x: rx + r * 100, y: ry + b });
       }
       this.decor.raquettes.push(raquette);
     }

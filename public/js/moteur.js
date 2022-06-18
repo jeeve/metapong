@@ -70,7 +70,7 @@ function afficheScore() {
 }
 
 function tailleRaquette() {
-  return document.querySelectorAll(".raquette").length;
+  return document.querySelectorAll(".raquette").length + 4;
 }
 
 function positionRaquette() {
