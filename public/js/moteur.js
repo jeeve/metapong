@@ -103,33 +103,33 @@ function supprimeBloc(x, y, classe) {
 
 function coloreMur(classe) {
   document.querySelectorAll("." + classe).forEach((elt) => {
-    elt.classList.add('touche');
+    elt.classList.add("touche");
   });
-  if (classe == 'gauche') {
+  if (classe == "gauche") {
     setTimeout(initCouleurMurGauche, 100);
   }
-  if (classe == 'droit') {
+  if (classe == "droit") {
     setTimeout(initCouleurMurDroit, 100);
   }
 }
 
 function initCouleurMurGauche() {
   document.querySelectorAll(".gauche").forEach((elt) => {
-    elt.classList.remove('touche');
+    elt.classList.remove("touche");
   });
 }
 
 function initCouleurMurDroit() {
   document.querySelectorAll(".droit").forEach((elt) => {
-    elt.classList.remove('touche');
+    elt.classList.remove("touche");
   });
 }
 
 function bougeRaquette(dy) {
   if (dy < 0) {
-    const ymax = 95; 
+    const ymax = 95;
     if (positionRaquette() + tailleRaquette() < ymax) {
-      if (positionRaquette() + tailleRaquette() >= ymax-5) {
+      if (positionRaquette() + tailleRaquette() >= ymax - 5) {
         deplaceRaquette(-(ymax - (positionRaquette() + tailleRaquette())));
       } else {
         deplaceRaquette(dy);
@@ -138,14 +138,37 @@ function bougeRaquette(dy) {
     }
   }
   if (dy > 0) {
-    const ymin = 5; 
+    const ymin = 5;
     if (positionRaquette() > ymin) {
-      if (positionRaquette() <= ymin+5) {
-        deplaceRaquette(+(positionRaquette()-ymin));
+      if (positionRaquette() <= ymin + 5) {
+        deplaceRaquette(+(positionRaquette() - ymin));
       } else {
         deplaceRaquette(dy);
       }
       metAJourRaquette(ID);
+    }
+  }
+}
+
+function positionBalle() {
+  let cercle = document.querySelector("circle");
+  let x = Number(cercle.getAttribute("cx").replace("%", ""));
+  let y = Number(cercle.getAttribute("cy").replace("%", ""));
+  return { x: x, y: y };
+}
+
+function raquetteAuto() {
+  if (document.querySelector("#auto-mode").checked) {
+    let b = positionBalle();
+    let xb = b.x;
+    let yb = b.y;
+    let yr = positionRaquette() + tailleRaquette() / 2;
+
+    if (yr < yb) {
+      bougeRaquette(-5);
+    }
+    if (yr > yb) {
+      bougeRaquette(+5);
     }
   }
 }

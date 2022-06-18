@@ -120,3 +120,5 @@ document.addEventListener("keydown", function (event) {
 document.addEventListener("wheel", function (event) {
   bougeRaquette(-event.deltaY/50); 
 });
+
+setInterval(raquetteAuto, 100);

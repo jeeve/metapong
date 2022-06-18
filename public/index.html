@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="all"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
     <title>Metapong</title>
-</head>
-<body>
-    <div id="controle">
+  </head>
+  <body>
+    <div id="infos">
       <button id="bouton-init">Init</button>
       <span id="numero-ecran">0</span><span id="nombre-ecrans"> / 0</span>
       <span id="titre">Metapong</span>
       <span id="score">0 - 0</span>
-    </div>   
+    </div>
     <svg>
       <!--  <circle cx="15%" cy="20%" r="1%" fill="white" vx="1" vy="0.5" /> -->
     </svg>
-    <div id="about"><a href="https://github.com/jeeve/metapong" target="_blank">about</a></div>
-    <div id="auteur"><a href="https://greduvent.herokuapp.com/" target="_blank">by jeeve</a></div>
+    <div id="about">
+      <a href="https://github.com/jeeve/metapong" target="_blank">about</a>
+    </div>
+    <div id="controles"><input id="auto-mode" type="checkbox" /><label>auto mode</label></div>
+    <div id="auteur">
+      <a href="https://greduvent.herokuapp.com/" target="_blank">by jeeve</a>
+    </div>
     <script src="./js/api.js"></script>
     <script src="./js/moteur.js"></script>
     <script src="./js/init.js"></script>
-</body>
+  </body>
 </html>
