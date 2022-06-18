@@ -181,6 +181,16 @@ class InfosModel {
         return;
       }
     });
+
+    return indice;
+  }
+
+  getIndiceBlocRaquetteEn(x, y) {
+    function distance(x1, y1, x2, y2) {
+      return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+    }
+
+    let indice = -1;
     this.decor.raquettes.forEach(function (raquette) {
       raquette.forEach(function (blocRaquette, i) {
         if (
@@ -204,7 +214,7 @@ class InfosModel {
   toucheBloc(x, y) {
     let i = this.getIndiceBlocEn(x, y);
     if (i > -1) {
-      let bloc = this.decor.blocs [i];
+      let bloc = this.decor.blocs[i];
       if (bloc.classe == 'brique') {
         if (bloc.vie > 0) {
           bloc.vie--;
@@ -217,6 +227,12 @@ class InfosModel {
       }
       return true;
     }
+
+    let j = this.getIndiceBlocRaquetteEn(x, y);
+    if (j > -1) {
+      return true;
+    }
+
     return false;
   }
 
