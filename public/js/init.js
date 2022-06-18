@@ -100,14 +100,24 @@ setInterval(raffraichitDecor, 5000);
 
 document.addEventListener("keydown", function (event) {
   if (event.code == "ArrowDown") {
-    if (positionRaquette() + tailleRaquette() * 5 < 95) {
-      deplaceRaquette(-5);
+    const ymax = 95; 
+    if (positionRaquette() + tailleRaquette() * 5 < ymax) {
+      if (positionRaquette() + tailleRaquette() * 5 >= ymax-5) {
+        deplaceRaquette(-(ymax - (positionRaquette() + tailleRaquette() * 5)));
+      } else {
+        deplaceRaquette(-5);
+      }
       metAJourRaquette(ID);
     }
   }
   if (event.code == "ArrowUp") {
-    if (positionRaquette() > 5) {
-      deplaceRaquette(+5);
+    const ymin = 5; 
+    if (positionRaquette() > ymin) {
+      if (positionRaquette() <= ymin+5) {
+        deplaceRaquette(+(positionRaquette()-ymin));
+      } else {
+        deplaceRaquette(+5);
+      }
       metAJourRaquette(ID);
     }
   }
@@ -131,14 +141,26 @@ document.addEventListener("keydown", function (event) {
 
 document.addEventListener("wheel", function (event) {
   if (event.deltaY > 0) {
-    if (positionRaquette() + tailleRaquette() * 5 < 100-Math.abs(event.deltaY/50) - 5) {
-      deplaceRaquette(-event.deltaY / 50);
+    const dy = event.deltaY/50;
+    const ymax = 95; 
+    if (positionRaquette() + tailleRaquette() * 5 < ymax) {
+      if (positionRaquette() + tailleRaquette() * 5 >= ymax-5) {
+        deplaceRaquette(-(ymax - (positionRaquette() + tailleRaquette() * 5)));
+      } else {
+        deplaceRaquette(-dy);
+      }
       metAJourRaquette(ID);
     }
   }
   if (event.deltaY < 0) {
-    if (positionRaquette() > Math.abs(event.deltaY/50) + 5) {
-      deplaceRaquette(-event.deltaY / 50);
+    const ymin = 5; 
+    const dy = event.deltaY/50;
+    if (positionRaquette() > ymin) {
+      if (positionRaquette() <= ymin+5) {
+        deplaceRaquette(+(positionRaquette()-ymin));
+      } else {
+        deplaceRaquette(-dy);
+      }
       metAJourRaquette(ID);
     }
   }
