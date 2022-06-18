@@ -151,8 +151,8 @@ class InfosModel {
         if (OK) {
           let y = rand_5(5, 90);
           let v = Math.floor(Math.random() * nbViesBriquesMax);
-          let b = { x: x, y: y, classe: 'brique', vie: v };
-          if (!this.blocEn(b.x, b.y)) {
+          if (!this.blocEn(x, y)) {
+            let b = { x: x, y: y, classe: 'brique', vie: v };
             this.decor.blocs.push(b);
             let res = {};
             Object.assign(res, b);
@@ -162,7 +162,7 @@ class InfosModel {
         n++;
       }
     }
-    return false;
+    return {};
   }
 
   getIndiceBlocEn(x, y) {

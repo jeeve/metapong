@@ -112,7 +112,7 @@ app.post("/sprite/", (req, res) => {
 
 app.get("/nouvellebrique/", (req, res) => {
   let brique = infos.creeBrique();
-  if (brique) {
+  if (Object.keys(brique).length != 0) {
     infos.nouvellesBriques.push(brique);
   }
   res.end();
