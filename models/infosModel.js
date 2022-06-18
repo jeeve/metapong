@@ -293,7 +293,7 @@ class InfosModel {
     ) {
       this.perduGauche = true;
       this.score.b++;
-      this.tempoScore = 20 / Math.abs(this.decor.balle.vx);
+      this.tempoScore = 15 / Math.abs(this.decor.balle.vx);
     }
     if (
       this.decor.balle.cx + this.decor.balle.vx > this.nbEcrans * 100 - 10 &&
@@ -301,7 +301,7 @@ class InfosModel {
     ) {
       this.perduDroit= true;
       this.score.a++;
-      this.tempoScore = 20 / Math.abs(this.decor.balle.vx);
+      this.tempoScore = 15 / Math.abs(this.decor.balle.vx);
     }
     this.tempoScore--;
     if (this.tempoScore < 0) {
