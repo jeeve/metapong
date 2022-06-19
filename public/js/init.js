@@ -21,10 +21,10 @@ function changeVitessePlus() {
 function toggleModeAuto() {
   autoMode = ! autoMode;
   if (autoMode) {
-    document.querySelector("#bouton-auto").innerHTML = 'auto OFF'; 
+    document.querySelector("#bouton-auto").innerHTML = 'manual'; 
   }
   else {
-    document.querySelector("#bouton-auto").innerHTML = 'auto ON'; 
+    document.querySelector("#bouton-auto").innerHTML = 'auto'; 
   }
 }
 

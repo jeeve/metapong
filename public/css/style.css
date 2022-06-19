@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: Arial;
 }
 
 body {
@@ -74,6 +75,7 @@ svg {
 #controles .controle {
   margin-right: 5px;
   display: inline-block;
+  width: 60px;
 }
 
 #controles button, #controles input, #controles label {
