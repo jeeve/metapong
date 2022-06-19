@@ -147,9 +147,8 @@ app.get("/score/", (req, res) => {
 app.get("/signal/:numeroEcran", (req, res) => {
   if (infos.nbEcrans > 0) {
     let numeroEcran = Number(req.params.numeroEcran);
-    let idEcran = numeroEcran;
     if (numeroEcran <= infos.signaux.length) {
-      infos.signaux[idEcran - 1].temps = Date.now();
+      infos.signaux[numeroEcran - 1].temps = Date.now();
     }
 
     res.setHeader("Content-Type", "application/json");

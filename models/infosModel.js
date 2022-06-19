@@ -339,7 +339,7 @@ class InfosModel {
     if (this.nbEcrans > 0) {
       let t = Date.now();
       for (let i = 0; i < this.signaux.length; i++) {
-        if (t - this.signaux[i].temps > 6000) {
+        if (t - this.signaux[i].temps > 5000) {
           this.enleveEcran(this.signaux[i].id);
           this.signaux = [];
           for (let i = 0; i < this.nbEcrans; i++) {

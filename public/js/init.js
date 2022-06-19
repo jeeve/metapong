@@ -102,7 +102,6 @@ function raffraichitDecor() {
   });
   idEcranAChange(ID).then((data) => {
     if (data.aChange) {
-      console.log(ID);
       ID = data.id;
       document.querySelector("#numero-ecran").innerHTML = ID;
       signal(ID).then((data) => {
@@ -114,7 +113,7 @@ function raffraichitDecor() {
   });
 }
 
-setInterval(raffraichitDecor, 5000);
+setInterval(raffraichitDecor, 1000);
 
 document.addEventListener("keydown", function (event) {
   if (event.code == "ArrowDown") {
