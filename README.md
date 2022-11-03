@@ -20,4 +20,4 @@ The insert key adds a brick randomly in game space
 -/+ numpad keys decrease/increase speed of the ball     
 
 
-![metapong](https://greduvent.herokuapp.com/informatique/images/metapong.gif)
+![metapong](https://greduvent.herokuapp.com/informatique/images/metapong-mini.gif)
