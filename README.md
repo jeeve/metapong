@@ -13,7 +13,7 @@ In root directory, enter :
 
 `node server.js`
 
-Navigate to http://localhost:8080 with multiples instances of you browser  
+Navigate to http://localhost:8080 with multiples instances of your browser  
 Use the up/down arrows or the mouse wheel to move the paddle  
 The space key instantly clears/displays all screens   
 The insert key adds a brick randomly in game space  
