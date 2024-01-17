@@ -30,12 +30,14 @@ svg {
   width: 100%;
   padding: 5px;
   color: black;
+  user-select: none;
 }
 
 #score {
   float: right;
   text-align: right;
   margin-right: 10px;
+  user-select: none;
 }
 
 #titre {
@@ -45,6 +47,7 @@ svg {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 1.2em;
+  user-select: none;
 }
 
 #auteur {
@@ -54,6 +57,7 @@ svg {
   text-align: right;
   margin-right: 10px;
   margin-bottom: 5px;
+  user-select: none;
 }
 
 #about {
@@ -63,6 +67,7 @@ svg {
   text-align: left;
   margin-left: 10px;
   margin-bottom: 5px;
+  user-select: none;
 }
 
 #controles {
@@ -71,12 +76,14 @@ svg {
   bottom: -5px;
   left: 50%;
   transform: translate(-50%, -50%);
+  user-select: none;
 }
 
 #controles .controle {
   margin-right: 5px;
   display: inline-block;
   width: 60px;
+  user-select: none;
 }
 
 #controles button, #controles input, #controles label {
